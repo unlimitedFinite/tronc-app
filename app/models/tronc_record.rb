@@ -29,5 +29,6 @@ class TroncRecord < ApplicationRecord
     else
       record.report = Report.find_by(month: m, year: y)
     end
+    Report.tally_up(record)
   end
 end

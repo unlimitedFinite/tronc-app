@@ -31,7 +31,10 @@ m = 1
 12.times do
   Report.create(
     month: m,
-    year: 2019
+    year: 2019,
+    gross_tips: 0,
+    tax_due: 0,
+    net_tips: 0
   )
   m += 1
 end
@@ -40,7 +43,10 @@ m = 1
 12.times do
   Report.create(
     month: m,
-    year: 2020
+    year: 2020,
+    gross_tips: 0,
+    tax_due: 0,
+    net_tips: 0
   )
   m += 1
 end
