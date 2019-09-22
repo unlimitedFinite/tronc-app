@@ -25,7 +25,6 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
-    create_employee_records
     respond_to do |format|
       if @tronc_record.save
         format.html { redirect_to @tronc_record, notice: 'Tronc record was successfully created.' }

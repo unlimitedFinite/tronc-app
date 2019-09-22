@@ -37,12 +37,9 @@ ActiveRecord::Schema.define(version: 2019_09_22_052543) do
     t.integer "gross_tips"
     t.date "week_end"
     t.integer "tax_due"
-    t.bigint "employee_record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["employee_record_id"], name: "index_tronc_records_on_employee_record_id"
   end
 
   add_foreign_key "employee_records", "employees"
-  add_foreign_key "tronc_records", "employee_records"
 end
