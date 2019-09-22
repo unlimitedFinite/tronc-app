@@ -25,7 +25,7 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
-
+    create_employee_records
     respond_to do |format|
       if @tronc_record.save
         format.html { redirect_to @tronc_record, notice: 'Tronc record was successfully created.' }
@@ -69,6 +69,6 @@ class TroncRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tronc_record_params
-      params.require(:tronc_record).permit(:gross_tips, :week_end, :tax_due, :employee_record_id)
+      params.require(:tronc_record).permit(:gross_tips, :week_end)
     end
 end
