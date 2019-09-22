@@ -11,9 +11,10 @@ class TroncRecord < ApplicationRecord
     # create records
     employees.each do |e|
       EmployeeRecord.create(
+        employee: e,
         week_end: self.week_end,
         tips: share,
-        tronc_id: self.id
+        tronc_record: self
       )
     end
 

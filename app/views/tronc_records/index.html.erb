@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Gross tips</th>
       <th>Week end</th>
+      <th>Gross tips</th>
       <th>Tax due</th>
-      <th>Employee record</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @tronc_records.each do |tronc_record| %>
       <tr>
-        <td><%= tronc_record.gross_tips %></td>
         <td><%= tronc_record.week_end %></td>
+        <td><%= tronc_record.gross_tips %></td>
         <td><%= tronc_record.tax_due %></td>
-        <td><%= tronc_record.employee_record_id %></td>
+
         <td><%= link_to 'Show', tronc_record %></td>
         <td><%= link_to 'Edit', edit_tronc_record_path(tronc_record) %></td>
         <td><%= link_to 'Destroy', tronc_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
