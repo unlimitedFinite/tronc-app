@@ -26,3 +26,21 @@ Employee.create(
   name: 'Luis',
   active: true
 )
+
+m = 1
+12.times do
+  Report.create(
+    month: m,
+    year: 2019
+  )
+  m += 1
+end
+
+m = 1
+12.times do
+  Report.create(
+    month: m,
+    year: 2020
+  )
+  m += 1
+end

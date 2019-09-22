@@ -1,5 +1,6 @@
 class TroncRecord < ApplicationRecord
   has_many :employee_records
+  belongs_to :report
 
   after_create :make_employee_records
 
@@ -17,6 +18,16 @@ class TroncRecord < ApplicationRecord
         tronc_record: self
       )
     end
+  end
 
+  def self.add_to_report(record)
+    d = record.week_end.day
+    m = record.week_end.month
+    y = record.week_end.year
+    if d < 6
+      record.report = Report.find_by(month: m - 1, year: y)
+    else
+      record.report = Report.find_by(month: m, year: y)
+    end
   end
 end

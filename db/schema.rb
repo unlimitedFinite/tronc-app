@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_22_052543) do
+ActiveRecord::Schema.define(version: 2019_09_22_063232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,12 +33,24 @@ ActiveRecord::Schema.define(version: 2019_09_22_052543) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.integer "gross_tips"
+    t.integer "tax_due"
+    t.integer "net_tips"
+    t.integer "month"
+    t.integer "year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tronc_records", force: :cascade do |t|
     t.integer "gross_tips"
     t.date "week_end"
     t.integer "tax_due"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "report_id"
+    t.index ["report_id"], name: "index_tronc_records_on_report_id"
   end
 
   add_foreign_key "employee_records", "employees"

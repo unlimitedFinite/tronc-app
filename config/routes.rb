@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reports
   resources :tronc_records
   resources :employee_records
   resources :employees
