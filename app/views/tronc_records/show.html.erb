@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gross tips:</strong>
+  <%= @tronc_record.gross_tips %>
+</p>
+
+<p>
+  <strong>Week end:</strong>
+  <%= @tronc_record.week_end %>
+</p>
+
+<p>
+  <strong>Tax due:</strong>
+  <%= @tronc_record.tax_due %>
+</p>
+
+<p>
+  <strong>Employee record:</strong>
+  <%= @tronc_record.employee_record_id %>
+</p>
+
+<%= link_to 'Edit', edit_tronc_record_path(@tronc_record) %> |
+<%= link_to 'Back', tronc_records_path %>

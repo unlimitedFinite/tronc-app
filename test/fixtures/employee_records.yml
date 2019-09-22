@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  week_end: 2019-09-22
+  tips: 1
+  employee: one
+
+two:
+  week_end: 2019-09-22
+  tips: 1
+  employee: two
