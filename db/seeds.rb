@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+p 'seeding employees....'
 
 Employee.create(
   name: 'Abdul',
@@ -27,26 +28,33 @@ Employee.create(
   active: true
 )
 
-m = 1
-12.times do
-  Report.create(
-    month: m,
-    year: 2019,
-    gross_tips: 0,
-    tax_due: 0,
-    net_tips: 0
-  )
-  m += 1
-end
+p 'seeding initial report...'
 
-m = 1
-12.times do
-  Report.create(
-    month: m,
-    year: 2020,
-    gross_tips: 0,
-    tax_due: 0,
-    net_tips: 0
-  )
-  m += 1
-end
+Report.create(
+  month: 9,
+  year: 2019,
+  gross_tips: 260,
+  tax_due: 52,
+  net_tips: 208
+)
+
+p 'seeding first tronc record...'
+
+TroncRecord.create(
+  week_end: Date.new(2019, 9, 7),
+  report: Report.last,
+  gross_tips: 260,
+  tax_due: 52
+)
+
+
+
+
+
+
+
+
+
+
+
+

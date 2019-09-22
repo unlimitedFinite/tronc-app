@@ -1,19 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Gross tips:</strong>
-  <%= @report.gross_tips %>
-</p>
+<h1><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %> </h1>
+<table>
+  <tr>
+    <th>Week End</th>
+    <th>Gross</th>
+    <th>Tax</th>
+    <th>Net</th>
+  </tr>
+  <% @report.tronc_records.each do |tr| %>
+    <tr>
+      <td><%= tr.week_end.to_s %></td>
+      <td>£<%= tr.gross_tips %></td>
+      <td>£<%= tr.tax_due %></td>
+      <td>£<%= tr.gross_tips - tr.tax_due %></td>
+    </tr>
+  <% end %>
+  <% if @report != Report.last %>
+    <tr>
+      <th>TOTALS</th>
+      <th>£<%= @report.gross_tips %></th>
+      <th>£<%= @report.tax_due %></th>
+      <th>£<%= @report.net_tips %></th>
+    </tr>
+  <% end %>
+</table>
 
-<p>
-  <strong>Tax due:</strong>
-  <%= @report.tax_due %>
-</p>
+<ul>
+  <% @report.employee_records.each do |er| %>
+    <li><%= er.employee.name %>: <%= er.tips %></li>
+  <% end %>
+</ul>
 
-<p>
-  <strong>Net tips:</strong>
-  <%= @report.net_tips %>
-</p>
-
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+<%= link_to "add new record", new_tronc_record_path  %>

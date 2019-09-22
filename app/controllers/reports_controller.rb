@@ -4,24 +4,27 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.where.not(gross_tips: 0)
+    # @reports = Report.where.not(gross_tips: 0)
+    @reports = Report.all
   end
 
   # GET /reports/1
   # GET /reports/1.json
   def show
-  end
-
-  # GET /reports/new
-
-  # GET /reports/1/edit
-  def edit
+    @tronc_records = TroncRecord.where(report: @report)
   end
 
   # POST /reports
   # POST /reports.json
   def create
-    @report = Report.new(report_params)
+    @report = Report.new
+    if Report.last.month == 12
+      @report.month = 1
+      @report.year = Report.last.year + 1
+    else
+      @report.month = Report.last.month + 1
+      @report.year = Report.last.year
+    end
 
     respond_to do |format|
       if @report.save

@@ -15,7 +15,8 @@ class TroncRecord < ApplicationRecord
         employee: e,
         week_end: self.week_end,
         tips: share,
-        tronc_record: self
+        tronc_record: self,
+        report_id: self.report.id
       )
     end
   end
@@ -28,6 +29,24 @@ class TroncRecord < ApplicationRecord
       record.report = Report.find_by(month: m - 1, year: y)
     else
       record.report = Report.find_by(month: m, year: y)
+    end
+    # if d < 6
+    #   record.report = Report.all[-2]
+    # else
+    #   record.report = Report.last
+    # end
+    if record.report == nil
+      if m + 1 == 13
+        month = 1
+        year = y + 1
+      else
+        month = m
+        year = y
+      end
+      record.report = Report.create(
+        month: month,
+        year: year
+      )
     end
     Report.tally_up(record)
   end

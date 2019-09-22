@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tronc Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week end</th>
+      <th>Gross tips</th>
+      <th>Tax due</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tronc_records.each do |tronc_record| %>
+      <tr>
+        <td><%= tronc_record.week_end %></td>
+        <td><%= tronc_record.gross_tips %></td>
+        <td><%= tronc_record.tax_due %></td>
+
+        <td><%= link_to 'Show', tronc_record %></td>
+        <td><%= link_to 'Edit', edit_tronc_record_path(tronc_record) %></td>
+        <td><%= link_to 'Destroy', tronc_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tronc Record', new_tronc_record_path %>
