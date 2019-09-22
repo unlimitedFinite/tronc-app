@@ -25,10 +25,12 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
-
+    @tronc_record.week_end = TroncRecord.last.week_end + 7
+    @tronc_record.tax_due = @tronc_record.gross_tips / 5
+    TroncRecord.add_to_report(@tronc_record)
     respond_to do |format|
       if @tronc_record.save
-        format.html { redirect_to @tronc_record, notice: 'Tronc record was successfully created.' }
+        format.html { redirect_to report_path(@tronc_record.report), notice: 'Tronc record was successfully created.' }
         format.json { render :show, status: :created, location: @tronc_record }
       else
         format.html { render :new }
@@ -54,6 +56,7 @@ class TroncRecordsController < ApplicationController
   # DELETE /tronc_records/1
   # DELETE /tronc_records/1.json
   def destroy
+    Report.tally_down(@tronc_record)
     @tronc_record.destroy
     respond_to do |format|
       format.html { redirect_to tronc_records_url, notice: 'Tronc record was successfully destroyed.' }
@@ -69,6 +72,7 @@ class TroncRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tronc_record_params
-      params.require(:tronc_record).permit(:gross_tips, :week_end, :tax_due, :employee_record_id)
+      params.require(:tronc_record).permit(:gross_tips)
     end
+
 end
