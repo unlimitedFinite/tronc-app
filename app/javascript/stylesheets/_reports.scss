@@ -2,10 +2,18 @@ td, th {
   border: 1px solid black;
   text-align: center;
   width: 150px;
+  background: white;
+}
+
+ul {
+  list-style: none;
 }
 
 th {
-  color: blue;
+  color: #0a3308bd;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 4px 0;
 }
 
 div.card a {
@@ -35,9 +43,9 @@ div.card a:hover {
 }
 
 .content {
-  height: 100vh;
   background-color: #e0e0e063;
   padding-top: 16px;
+  text-align: center;
 }
 
 .card {
@@ -61,6 +69,7 @@ section.content div.card:nth-child(2) {
 
 section.content p {
   padding: 12px 64px;
+  margin: 8px auto;
 }
 
 .new {
@@ -69,4 +78,34 @@ section.content p {
   right: 16px;
   font-size: 0.7rem;
   color: #5d8614;
+}
+
+section.content table {
+  margin: 8px auto;
+}
+
+.btn-primary {
+  background-color: #2f611ccc;
+  border-color: #2f611ccc;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #1c615bcc;
+  border-color: #1c615bcc;
+  transition: all 0.4s ease-in-out;
+}
+
+.tax-code {
+  padding: 6px;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  background-color: #00000000;
+}
+
+input:focus {
+  border-color: rgba(79, 125, 70, 0.47);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(79, 125, 70);
+  outline: 0 none;
 }
