@@ -16,6 +16,7 @@
           Copy Code
         </button>
         <%= link_to "Pay HMRC", 'https://www.tax.service.gov.uk/pay/5d883a1e210000d90c364a87/enter-details', class: "btn btn-primary" %>
+        <%= link_to "Email Report", '#', class:"btn btn-primary" %>
       </div>
     </p>
   <% end %>
@@ -63,8 +64,6 @@
       </li>
     <% end %>
   </ul>
-  <br>
-    <a href="#">Send Report to Accountant</a>
   <% end %>
   <!-- Can only add a new record if report is incomplete -->
   <% if @report == Report.first %>
