@@ -12,6 +12,8 @@ class ReportsController < ApplicationController
   # GET /reports/1.json
   def show
     @tronc_records = TroncRecord.where(report: @report)
+    @employee_records = EmployeeRecord.all
+    @employees = @employee_records.group_by(&:employee)
   end
 
   # POST /reports
