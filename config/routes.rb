@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/example'
   resources :reports
   resources :tronc_records
   resources :employees

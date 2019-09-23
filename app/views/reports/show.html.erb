@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %> </h1>
+<h1 class="display-3"><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %> </h1>
 <table>
   <tr>
     <th>Week End</th>
@@ -29,8 +29,9 @@
 <% if @report != Report.last %>
   <p>This period of the Tronc is now finished. Please arrange payment of <strong>£<%= @report.tax_due %></strong> as soon as possible.</p>
   <a href="#">Send Report to Accountant</a>
-  <%= link_to "Gov.uk payment portal", 'http://www.gov.uk/' %>
+  <%= link_to "Gov.uk payment portal", 'https://www.tax.service.gov.uk/pay/5d883a1e210000d90c364a87/enter-details' %>
 <% end %>
+<a href="#">475PD00935391</a>
 <ul>
   <% @report.employee_records.each do |er| %>
     <li><%= er.employee.name %>: <%= er.tips %></li>
