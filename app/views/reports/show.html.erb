@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="display-3"><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %> </h1>
+<h1 class="display-3"><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %></h1>
 <table>
   <tr>
     <th>Week End</th>
-    <th>Gross</th>
-    <th>Tax</th>
-    <th>Net</th>
+    <th>Gross Tips</th>
+    <th>Tax Due</th>
+    <th>Net Tips</th>
   </tr>
   <% @report.tronc_records.each do |tr| %>
     <tr>
@@ -16,6 +16,7 @@
       <td>£<%= tr.gross_tips - tr.tax_due %></td>
     </tr>
   <% end %>
+  <!-- Totals only shown if report is complete -->
   <% if @report != Report.last %>
     <tr>
       <th>TOTALS</th>
@@ -26,17 +27,30 @@
   <% end %>
 </table>
 <br>
+
+<!-- The results below are shown only once the period is over -->
 <% if @report != Report.last %>
+
+<!-- Employee net tips received -->
+<h3>Employees net tips received</h3>
+<ul>
+  <% @employees.each_pair do |e, r| %>
+    <li><strong><%= e.name %></strong> received total of:
+      <% t = 0 %>
+      <% r.each do |r| %>
+        <% t += r.tips %>
+      <% end %>
+      £<%= t %>
+    </li>
+  <% end %>
+</ul>
+
+<br>
   <p>This period of the Tronc is now finished. Please arrange payment of <strong>£<%= @report.tax_due %></strong> as soon as possible.</p>
   <a href="#">Send Report to Accountant</a>
   <%= link_to "Gov.uk payment portal", 'https://www.tax.service.gov.uk/pay/5d883a1e210000d90c364a87/enter-details' %>
+  <a href="#">475PD00935391</a>
 <% end %>
-<a href="#">475PD00935391</a>
-<ul>
-  <% @report.employee_records.each do |er| %>
-    <li><%= er.employee.name %>: <%= er.tips %></li>
-  <% end %>
-</ul>
 
 <% if @report == Report.last %>
   <%= link_to "add new record", new_tronc_record_path  %>
