@@ -2,7 +2,7 @@ class Report < ApplicationRecord
   has_many :tronc_records
   has_many :employee_records
 
-  default_scope { order(year: :ASC, month: :ASC) }
+  default_scope { order(year: :DESC, month: :DESC) }
   before_create :default_values
 
   def self.tally_up(record)

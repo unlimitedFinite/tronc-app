@@ -7,3 +7,66 @@ td, th {
 th {
   color: blue;
 }
+
+div.card a {
+  color: #0a3308bd;
+  border-radius: 12px;
+  box-shadow: 0 0 0 0 #154c13 inset;
+  transition: all 0.5s ease-in-out;
+}
+
+div.card a:hover {
+  color: #194e22;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: -2px -2px 4px 1px #154c13 inset;
+  transition: all 0.3s ease-in-out;
+}
+
+.header h1 {
+  color: #0a3308bd;
+  text-align: center;
+  padding: 8px 20px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 auto;
+  border-bottom: 8px solid #818385;
+}
+
+.content {
+  height: 100vh;
+  background-color: #e0e0e063;
+  padding-top: 16px;
+}
+
+.card {
+  text-align: center;
+  width: 75%;
+  margin: 4px auto;
+  border-radius: 12px;
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+
+section.content div.card:nth-child(2) {
+  .card-body {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+}
+
+section.content p {
+  padding: 12px 64px;
+}
+
+.new {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 0.7rem;
+  color: #5d8614;
+}

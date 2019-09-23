@@ -1,28 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Reports</h1>
+<section class="header">
+  <h1>Reports</h1>
+</section>
+<section class="content">
+  <p>Here is list of all the generated reports. Please click on the current report to add a new record or click on a previous report to see more information</p>
+  <% @reports.each do |report| %>
+    <div class="card g">
+      <%= link_to report_path(report) do  %>
+        <div class="card-body">
+          <% if report == Report.first %>
+            <div class="new">
+              Current Report
+            </div>
+          <% end %>
+          <%= Date::MONTHNAMES[report.month] %> <%= report.year %>
+          <%  %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>
 
-<table>
-  <thead>
-    <tr>
-      <th>Month</th>
-      <th>Year</th>
-      <th>Gross tips</th>
-      <th>Tax due</th>
-      <th>Net tips</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @reports.each do |report| %>
-      <tr>
-        <td><%= Date::MONTHNAMES[report.month] %></td>
-        <td><%= report.year %></td>
-        <td><%= report.gross_tips %></td>
-        <td><%= report.tax_due %></td>
-        <td><%= report.net_tips %></td>
-        <td><%= link_to 'Show', report %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
