@@ -21,6 +21,11 @@ class Report < ApplicationRecord
     report.save
   end
 
+  def self.mark_complete(report)
+    report.completed = true
+    report.save
+  end
+
   private
 
     def default_values

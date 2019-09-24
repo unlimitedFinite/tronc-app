@@ -25,17 +25,14 @@ class TroncRecord < ApplicationRecord
     d = record.week_end.day
     m = record.week_end.month
     y = record.week_end.year
-    if d < 6
-      record.report = Report.find_by(month: m - 1, year: y)
-    else
-      record.report = Report.find_by(month: m, year: y)
+    @report_this_month = Report.find_by(month: m, year: y)
+    @report_last_month = Report.find_by(month: m - 1, year: y)
+    if d < 6 # Tronc Record belongs to last months report
+      record.report = @report_last_month
+    else # Tronc Record belongs to this months report
+      record.report = @report_this_month
     end
-    # if d < 6
-    #   record.report = Report.all[-2]
-    # else
-    #   record.report = Report.last
-    # end
-    if record.report == nil
+    if record.report == nil # Tronc belongs to new report
       if m + 1 == 13
         month = 1
         year = y + 1
@@ -43,6 +40,8 @@ class TroncRecord < ApplicationRecord
         month = m
         year = y
       end
+      # Close this months report and add record to new report
+      Report.mark_complete(@report_last_month)
       record.report = Report.create(
         month: month,
         year: year
