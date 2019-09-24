@@ -64,6 +64,15 @@ class ReportsController < ApplicationController
     end
   end
 
+  def print_pdf
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "report" # Excluding ".pdf" extension.
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
