@@ -14,6 +14,19 @@ class ReportsController < ApplicationController
     @tronc_records = TroncRecord.where(report: @report)
     @employee_records = EmployeeRecord.all
     @employees = @employee_records.group_by(&:employee)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Tronc Report",
+        template: 'reports/show_pdf.html.erb',
+        page_size: 'A4',
+        layout: 'pdf.html',
+        zoom: 1,
+        lowquality: true,
+        dpi: 75
+         # Excluding ".pdf" extension.
+      end
+    end
   end
 
   # POST /reports
@@ -68,7 +81,10 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "report" # Excluding ".pdf" extension.
+        render pdf: "report",
+        template: 'invoices/show.html.erb',
+        page_size: 'A4'
+         # Excluding ".pdf" extension.
       end
     end
   end

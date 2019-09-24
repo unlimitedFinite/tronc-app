@@ -1,0 +1,40 @@
+<section class="header">
+  <h1><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %></h1>
+</section>
+<section class="content">
+  <table>
+    <tr>
+      <th>Week Ending</th>
+      <th>Gross Tips</th>
+      <th>Tax Due</th>
+      <th>Net Tips</th>
+    </tr>
+    <% @report.tronc_records.each do |tr| %>
+      <tr>
+        <td><%= tr.week_end.strftime("%a #{tr.week_end.day.ordinalize} %b") %></td>
+        <td>£<%= tr.gross_tips %></td>
+        <td>£<%= tr.tax_due %></td>
+        <td>£<%= tr.gross_tips - tr.tax_due %></td>
+      </tr>
+    <% end %>
+      <tr>
+        <th>TOTALS</th>
+        <th>£<%= @report.gross_tips %></th>
+        <th>£<%= @report.tax_due %></th>
+        <th>£<%= @report.net_tips %></th>
+      </tr>
+    </table>
+  <br>
+  <h3>Employees Net Tips</h3>
+  <ul>
+    <% @employees.each_pair do |e, r| %>
+      <li><strong><%= e.name %></strong> received total of:
+        <% t = 0 %>
+        <% r.each do |r| %>
+          <% t += r.tips %>
+        <% end %>
+        £<%= t %>
+      </li>
+    <% end %>
+  </ul>
+</section>
