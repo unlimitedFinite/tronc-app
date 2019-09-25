@@ -24,64 +24,28 @@ class TroncRecord < ApplicationRecord
   def self.add_to_report(record)
     d = record.week_end.day
     m = record.week_end.month
-    y = record.week_end.year
-    if m == 1
-      m = 13
-    end
-    byebug
-    @report_this_month = Report.find_by(month: m, year: y)
-    if m == 13
-      @report_last_month = Report.find_by(month: m - 1, year: y - 1)
-    else
-      @report_last_month = Report.find_by(month: m - 1, year: y)
-    end
-    if d < 6 && m == Report.last.month + 1 # Tronc Record belongs to last months report
+    @report_this_month = Report.last
+    @report_last_month = Report.second_to_last
+
+    if d < 6 && m == Report.last.report_start.next_month # Tronc Record belongs to last months report
       record.report = @report_last_month
     else # Tronc Record belongs to this months report
       record.report = @report_this_month
     end
     Report.tally_up(record)
-
-    # if record.report == nil # Tronc belongs to new report
-    #   if m + 1 == 13
-    #     month = 1
-    #     year = y + 1
-    #   else
-    #     month = m
-    #     year = y
-    #   end
-    #   # Close this months report and add record to new report
-    #   record.report = Report.create(
-    #     month: month,
-    #     year: year
-    #   )
-    # end
   end
 
   def self.check_next_record(week_end)
     week_end += 7
-    d = week_end.day
     m = week_end.month
-    y = week_end.year
-    if m == 1
-      m = 13
-    end
-    # @report_this_month = Report.find_by(month: m, year: y)
-    # @report_last_month = Report.find_by(month: m - 1, year: y)
-    if d < 6 && m == Report.last.month + 1
+
+    if week_end.day < 6 && m == Report.last.report_start.next_month.month
       return false
-    elsif m == Report.last.month
+    elsif m == Report.last.report_start.month
       return false
     else
-      if m == 13
-        m = 1
-      end
-      byebug
       Report.mark_complete(Report.last)
-      Report.create(
-        month: m,
-        year: y
-      )
+      Report.create(report_start: Report.last.report_start.next_month)
     end
   end
 end
