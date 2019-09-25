@@ -22,6 +22,10 @@ class Report < ApplicationRecord
   end
 
   def self.mark_complete(report)
+    # byebug
+    # Check if the next record will create a new report
+    # if report == Report.last
+    # end
     report.completed = true
     report.save
   end

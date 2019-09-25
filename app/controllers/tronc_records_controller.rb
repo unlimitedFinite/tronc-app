@@ -28,6 +28,7 @@ class TroncRecordsController < ApplicationController
     @tronc_record.week_end = TroncRecord.last.week_end + 7
     @tronc_record.tax_due = @tronc_record.gross_tips / 5
     TroncRecord.add_to_report(@tronc_record)
+    TroncRecord.check_next_record(@tronc_record.week_end)
     respond_to do |format|
       if @tronc_record.save
         format.html { redirect_to report_path(@tronc_record.report), notice: 'Tronc record was successfully created.' }
