@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   # GET /reports.json
   def index
     # @reports = Report.where.not(gross_tips: 0)
-    @reports = Report.all
+    @reports = Report.all.order(report_start: 'DESC')
   end
 
   # GET /reports/1

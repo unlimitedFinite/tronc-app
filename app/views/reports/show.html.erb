@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <section class="header">
-  <h1><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %></h1>
+  <h1><%= @report.report_start.strftime("%B %Y") %></h1>
 </section>
 <section class="content">
-  <% if @report == Report.first %>
+  <% if @report.completed == false %>
     <p>Below you can see the tronc records entered for the current period. Once the report is complete, please come back to see the finished report, which will give you the options to send results to your accountant and arrange payment to HMRC</p>
   <% else %>
     <p>
@@ -37,7 +37,7 @@
     <% end %>
 
     <!-- Totals only shown if report is complete -->
-    <% if @report != Report.first %>
+    <% if @report.completed %>
       <tr>
         <th>TOTALS</th>
         <th>£<%= @report.gross_tips %></th>
@@ -49,7 +49,7 @@
   <br>
 
   <!-- The results below are shown only once the period is over -->
-  <% if @report != Report.first %>
+  <% if @report.completed %>
 
   <!-- Employee net tips received -->
   <h3>Employees Net Tips Received</h3>
@@ -66,7 +66,7 @@
   </ul>
   <% end %>
   <!-- Can only add a new record if report is incomplete -->
-  <% if @report == Report.first %>
+  <% if @report.completed == false %>
     <%= link_to "New Record", new_tronc_record_path, class: 'btn btn-primary'  %>
   <% end %>
 </section>

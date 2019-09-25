@@ -2,7 +2,6 @@ class Report < ApplicationRecord
   has_many :tronc_records
   has_many :employee_records
 
-  default_scope { order(year: :DESC, month: :DESC) }
   before_create :default_values
 
   def self.tally_up(record)
@@ -18,6 +17,11 @@ class Report < ApplicationRecord
     report.gross_tips -= record.gross_tips
     report.tax_due -= record.tax_due
     report.net_tips = report.gross_tips - report.tax_due
+    report.save
+  end
+
+  def self.mark_complete(report)
+    report.completed = true
     report.save
   end
 

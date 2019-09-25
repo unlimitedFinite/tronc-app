@@ -1,5 +1,5 @@
 <section class="header">
-  <h1><%= Date::MONTHNAMES[@report.month] %> <%= @report.year %></h1>
+  <h1><%= @report.report_start.strftime("%B %Y") %></h1>
 </section>
 <section class="content">
   <table>
