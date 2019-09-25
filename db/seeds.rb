@@ -31,8 +31,7 @@ Employee.create(
 p 'seeding initial report...'
 
 Report.create(
-  month: 9,
-  year: 2019,
+  report_start: Date.new(2019, 9, 6),
   gross_tips: 260,
   tax_due: 52,
   net_tips: 208

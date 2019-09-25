@@ -25,14 +25,23 @@ class TroncRecord < ApplicationRecord
     d = record.week_end.day
     m = record.week_end.month
     y = record.week_end.year
-
+    if m == 1
+      m = 13
+    end
+    byebug
     @report_this_month = Report.find_by(month: m, year: y)
-    @report_last_month = Report.find_by(month: m - 1, year: y)
-    if d < 6 # Tronc Record belongs to last months report
+    if m == 13
+      @report_last_month = Report.find_by(month: m - 1, year: y - 1)
+    else
+      @report_last_month = Report.find_by(month: m - 1, year: y)
+    end
+    if d < 6 && m == Report.last.month + 1 # Tronc Record belongs to last months report
       record.report = @report_last_month
     else # Tronc Record belongs to this months report
       record.report = @report_this_month
     end
+    Report.tally_up(record)
+
     # if record.report == nil # Tronc belongs to new report
     #   if m + 1 == 13
     #     month = 1
@@ -47,7 +56,6 @@ class TroncRecord < ApplicationRecord
     #     year: year
     #   )
     # end
-    Report.tally_up(record)
   end
 
   def self.check_next_record(week_end)
@@ -55,7 +63,9 @@ class TroncRecord < ApplicationRecord
     d = week_end.day
     m = week_end.month
     y = week_end.year
-
+    if m == 1
+      m = 13
+    end
     # @report_this_month = Report.find_by(month: m, year: y)
     # @report_last_month = Report.find_by(month: m - 1, year: y)
     if d < 6 && m == Report.last.month + 1
@@ -63,12 +73,15 @@ class TroncRecord < ApplicationRecord
     elsif m == Report.last.month
       return false
     else
-      # byebug
+      if m == 13
+        m = 1
+      end
+      byebug
       Report.mark_complete(Report.last)
       Report.create(
         month: m,
         year: y
-        )
+      )
     end
   end
 end

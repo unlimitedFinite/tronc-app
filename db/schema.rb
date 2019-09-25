@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_131401) do
+ActiveRecord::Schema.define(version: 2019_09_25_084230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,11 +39,10 @@ ActiveRecord::Schema.define(version: 2019_09_24_131401) do
     t.integer "gross_tips"
     t.integer "tax_due"
     t.integer "net_tips"
-    t.integer "month"
-    t.integer "year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "completed", default: false
+    t.date "report_start"
   end
 
   create_table "tronc_records", force: :cascade do |t|
