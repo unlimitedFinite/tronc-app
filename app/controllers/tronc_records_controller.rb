@@ -37,16 +37,21 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
-    @tronc_record.week_end = TroncRecord.last.week_end + 7
+    if current_user.reports.length > 0
+      @tronc_record.week_end = TroncRecord.where(user: current_user).last.week_end + 7
+    end
+    @tronc_record.user = current_user
     @tronc_record.tax_due = @tronc_record.gross_tips / 5
     TroncRecord.add_to_report(@tronc_record)
-    TroncRecord.check_next_record(@tronc_record.week_end)
+    TroncRecord.check_next_record(@tronc_record)
+    Report.tally_up(@tronc_record)
+
     respond_to do |format|
       if @tronc_record.save
         format.html { redirect_to report_path(@tronc_record.report), notice: 'Tronc record was successfully created.' }
         format.json { render :show, status: :created, location: @tronc_record }
       else
-        format.html { render :new }
+        format.html { redirect_to new_tronc_record_path }
         format.json { render json: @tronc_record.errors, status: :unprocessable_entity }
       end
     end

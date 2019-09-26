@@ -12,6 +12,9 @@
     </p>
     <%= link_to "Employees Area", employees_path, class: 'btn btn-primary btn-lg' %>
   <% else %>
+    <p>
+      Now that you've added your employees, you can add your first Tronc Record. You must carefully select the first date of this record. All the next dates will be automatically chosen based on your selection.
+    </p>
     <%= link_to "Add Record", new_tronc_record_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
     <div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

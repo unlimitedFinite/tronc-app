@@ -90,7 +90,8 @@ class ReportsController < ApplicationController
   end
 
   def setup
-
+    @last_saturday = Date.today
+    @last_saturday -= 1 until @last_saturday.saturday?
   end
 
   private
