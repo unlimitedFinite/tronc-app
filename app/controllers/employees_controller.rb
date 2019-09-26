@@ -32,7 +32,7 @@ class EmployeesController < ApplicationController
     @employee.user = current_user
     respond_to do |format|
       if @employee.save
-        format.html { render :index, notice: 'Employee was created!' }
+        format.html { redirect_to employees_path, notice: 'Employee was created!' }
         format.json { render :index, status: :created }
       else
         format.html { render :index }
