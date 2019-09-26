@@ -37,6 +37,7 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
+    if current_user.reports > 0
     @tronc_record.week_end = TroncRecord.last.week_end + 7
     @tronc_record.tax_due = @tronc_record.gross_tips / 5
     TroncRecord.add_to_report(@tronc_record)

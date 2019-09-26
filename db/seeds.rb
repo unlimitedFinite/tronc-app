@@ -56,7 +56,8 @@ TroncRecord.create(
   week_end: Date.new(2019, 9, 7),
   report: Report.last,
   gross_tips: 260,
-  tax_due: 52
+  tax_due: 52,
+  user: User.last
 )
 
 

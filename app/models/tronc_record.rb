@@ -1,6 +1,7 @@
 class TroncRecord < ApplicationRecord
   has_many :employee_records
   belongs_to :report
+  belongs_to :user
 
   after_create :make_employee_records
 

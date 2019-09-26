@@ -20,7 +20,7 @@
 
     <% if @reports.length == 0 %>
       <div class="field">
-        <p>The date you choose should be the last day of the first week you would like to start the application. For example.. If you count all the tips collected between Sunday and Saturday and want to start the application from the latest week, then your week end is <%= @last_saturday %>. After this the dates will be automated!</p>
+        <p>The date you choose should be the last day of the first week you would like to start the application. For example.. If you count all the tips collected between Sunday and Saturday and want to start the application from the latest week, then your week end is <%= @last_saturday.strftime("%a #{@last_saturday.day.ordinalize} %b %y") %>. After this the dates will be automated!</p>
         <%= form.label :week_end %>
         <%= form.select(:week_end, options_for_select(@weeks_array, @last_saturday), {}, { :class => 'select_week' }) %>
       </div>
