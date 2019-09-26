@@ -1,5 +1,6 @@
-body {
-  height: 100vh;
+body, html {
+  height: 100%;
+  background: #e0e0e063;
 }
 
 /* NavBar Styles */
@@ -12,7 +13,7 @@ body {
   top: -16px;
   align-items: baseline;
   justify-content: space-between;
-  animation: fadein 1s 0s linear;
+  animation: fadein 3s 0s 2s linear;
   background: black;
 }
 
