@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 p 'creating user'
 
-User.create(
+u = User.create(
   email: 'test@test.com',
   password: 'secret'
 )
@@ -16,23 +16,28 @@ p 'seeding employees....'
 
 Employee.create(
   name: 'Abdul',
-  active: true
+  active: true,
+  user: u
 )
 Employee.create(
   name: 'Bernard',
-  active: true
+  active: true,
+  user: u
 )
 Employee.create(
   name: 'Ana Chiara',
-  active: true
+  active: true,
+  user: u
 )
 Employee.create(
   name: 'Bez',
-  active: true
+  active: true,
+  user: u
 )
 Employee.create(
   name: 'Luis',
-  active: true
+  active: true,
+  user: u
 )
 
 p 'seeding initial report...'
