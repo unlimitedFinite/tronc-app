@@ -35,7 +35,7 @@ div.card a:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.header h1 {
+.header h1, h2 {
   color: #0a3308bd;
   text-align: center;
   padding: 8px 20px;
@@ -46,6 +46,7 @@ div.card a:hover {
 }
 
 .header {
+  text-align: center;
   padding-top: 62px;
   border-bottom: 8px solid #818385;
 }

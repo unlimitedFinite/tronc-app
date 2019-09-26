@@ -3,6 +3,23 @@ body, html {
   background: #e0e0e063;
 }
 
+.notice {
+  position: absolute;
+  color: #0735088c;
+  bottom: 12px;
+  right: 12px;
+  background: #a4d28e;
+  border: 4px solid #7ab19663;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.alert {
+  position: absolute;
+  bottom: 0px;
+  right: 16px
+}
+
 /* NavBar Styles */
 
 .navbar {

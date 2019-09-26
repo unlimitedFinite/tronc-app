@@ -1,10 +1,9 @@
 class TroncRecordsController < ApplicationController
   before_action :set_tronc_record, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /tronc_records
   # GET /tronc_records.json
   def index
-    @tronc_records = TroncRecord.all
   end
 
   # GET /tronc_records/1
@@ -14,7 +13,16 @@ class TroncRecordsController < ApplicationController
 
   # GET /tronc_records/new
   def new
+    @reports = Report.where(user: current_user)
     @tronc_record = TroncRecord.new
+    @weeks_array = []
+    @last_saturday = Date.today
+    @last_saturday -= 1 until @last_saturday.saturday?
+    date = Date.new(2019, 4, 6)
+    while date < Date.today do
+      @weeks_array << [date.strftime("%a #{date.day.ordinalize} %b %y"), date]
+      date += 1
+    end
     respond_to do |f|
       f.html
       f.js
@@ -77,7 +85,7 @@ class TroncRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tronc_record_params
-      params.require(:tronc_record).permit(:gross_tips)
+      params.require(:tronc_record).permit(:gross_tips, :week_end)
     end
 
 end

@@ -1,0 +1,23 @@
+<div class="header">
+  <h2>Welcome</h2>
+</div>
+<div class="content">
+  <p>
+    Welcome to your Tronc System.com! This application will help you to manage your tronc system. <br>The system assumes that you will pay tips to staff on a weekly basis and pay HMRC on a monthly basis (contact support for a special setup if this is not the case)
+  </p>
+  <hr>
+  <% if current_user.employees.length == 0 %>
+    <p>
+      In order to get started you will need to add some staff to your system. After you have done this, you will be returned here to finish setting up your system.
+    </p>
+    <%= link_to "Employees Area", employees_path, class: 'btn btn-primary btn-lg' %>
+  <% else %>
+    <%= link_to "Add Record", new_tronc_record_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
+    <div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
