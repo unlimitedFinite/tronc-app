@@ -5,7 +5,7 @@ class TroncRecord < ApplicationRecord
 
   after_create :make_employee_records
 
-  def make_employee_records()
+  def make_employee_records
     # Define list of active employees
     employees = Employee.where(active: true, user: self.user)
     # Define money to be split (self.tips - self.tax_due)

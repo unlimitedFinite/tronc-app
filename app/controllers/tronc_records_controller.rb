@@ -15,13 +15,13 @@ class TroncRecordsController < ApplicationController
   def new
     @reports = Report.where(user: current_user)
     @tronc_record = TroncRecord.new
-    @weeks_array = []
+    @months_array = []
     @last_saturday = Date.today
     @last_saturday -= 1 until @last_saturday.saturday?
     date = Date.new(2019, 4, 6)
     while date < Date.today do
-      @weeks_array << [date.strftime("%a #{date.day.ordinalize} %b %y"), date]
-      date += 1
+      @months_array << [date.strftime("%a #{date.day.ordinalize} %b %y"), date]
+      date = date.next_month
     end
     respond_to do |f|
       f.html

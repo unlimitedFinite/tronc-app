@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Report Setup</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%= form_for(@report, local: true) do |form| %>
+  <div class="modal-body">
+
+    <% if @report.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@report.errors.count, "error") %> prohibited this @report from being saved:</h2>
+        <ul>
+          <% @report.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <p>Please choose the tax month you would like us to track your tronc system from:</p>
+      <%= form.select(:report_start, options_for_select(@months_array, @selected), {}, { :class => 'select_week' }) %>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
