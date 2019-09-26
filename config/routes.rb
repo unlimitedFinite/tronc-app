@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations" }
   get 'pages/example'
+  get 'reports/setup', to: 'reports#setup', as: :setup_path
   resources :reports
   resources :tronc_records
   resources :employees

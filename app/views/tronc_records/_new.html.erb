@@ -6,10 +6,10 @@
 </div>
 <%= form_for(@tronc_record, local: true) do |form| %>
   <div class="modal-body">
+
     <% if @tronc_record.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@tronc_record.errors.count, "error") %> prohibited this @tronc_record from being saved:</h2>
-
         <ul>
           <% @tronc_record.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -18,10 +18,19 @@
       </div>
     <% end %>
 
+    <% if @reports.length == 0 %>
+      <div class="field">
+        <p>Choose which date you would like to set as your first 'week ending' report date. This will be set in the application and cannot be changed</p>
+        <%= form.label :week_end %>
+        <%= form.select(:week_end, options_for_select(@weeks_array, @last_saturday), {}, { :class => 'select_week' }) %>
+      </div>
+    <% end %>
+
     <div class="field">
       <%= form.label :gross_tips %>
-      <%= form.number_field :gross_tips, id: 'tips_input' %>
+      <%= form.number_field :gross_tips %>
     </div>
+
   </div>
   <div class="modal-footer">
     <div class="actions">

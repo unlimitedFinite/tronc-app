@@ -1,15 +1,14 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :update, :destroy]
   before_action :authenticate_user!
-  # GET /reports
-  # GET /reports.json
+
   def index
-    # @reports = Report.where.not(gross_tips: 0)
     @reports = Report.all.where(user: current_user).order(report_start: 'DESC')
+    if @reports.length == 0
+      redirect_to :setup_path
+    end
   end
 
-  # GET /reports/1
-  # GET /reports/1.json
   def show
     @tronc_records = TroncRecord.where(report: @report)
     @employee_records = EmployeeRecord.where(report: @report)
@@ -88,6 +87,10 @@ class ReportsController < ApplicationController
          # Excluding ".pdf" extension.
       end
     end
+  end
+
+  def setup
+
   end
 
   private

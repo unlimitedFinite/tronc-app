@@ -4,7 +4,6 @@ class EmployeeRecordsController < ApplicationController
   # GET /employee_records
   # GET /employee_records.json
   def index
-    @employee_records = EmployeeRecord.all
   end
 
   # GET /employee_records/1
