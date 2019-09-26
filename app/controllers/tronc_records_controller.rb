@@ -1,6 +1,6 @@
 class TroncRecordsController < ApplicationController
   before_action :set_tronc_record, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /tronc_records
   # GET /tronc_records.json
   def index

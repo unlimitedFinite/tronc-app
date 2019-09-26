@@ -5,7 +5,7 @@ ruby '2.5.3'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-heroku', '2.12.5.0'
 gem 'wkhtmltopdf-binary'
-
+gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
