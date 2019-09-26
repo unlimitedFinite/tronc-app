@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <section class="header">
@@ -67,6 +69,17 @@
   <% end %>
   <!-- Can only add a new record if report is incomplete -->
   <% if @report.completed == false %>
-    <%= link_to "New Record", new_tronc_record_path, class: 'btn btn-primary'  %>
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      New Record
+    </button> -->
+    <%#= link_to "New Record", new_tronc_record_path, class: 'btn btn-primary'  %>
+    <%= link_to "Add Record", new_tronc_record_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
+    <div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+        </div>
+      </div>
+    </div>
   <% end %>
 </section>

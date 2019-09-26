@@ -15,6 +15,10 @@ class TroncRecordsController < ApplicationController
   # GET /tronc_records/new
   def new
     @tronc_record = TroncRecord.new
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   # GET /tronc_records/1/edit
