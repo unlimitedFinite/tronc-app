@@ -1,0 +1,10 @@
+<div class="navbar">
+  <h2 class="logo">TroncSystem</h2>
+  <div class="nav">
+    <%= link_to 'Reports', reports_path %>
+    <% if true == false %>
+    <%= link_to 'Settings', settings_path %>
+    <%= link_to 'Sign Out', destroy_session_path %>
+    <% end %>
+  </div>
+</div>

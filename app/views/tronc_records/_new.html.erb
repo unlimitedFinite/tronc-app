@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">New Tronc Record</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<%= form_for(@tronc_record, local: true) do |form| %>
+  <div class="modal-body">
+    <% if @tronc_record.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@tronc_record.errors.count, "error") %> prohibited this @tronc_record from being saved:</h2>
+
+        <ul>
+          <% @tronc_record.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :gross_tips %>
+      <%= form.number_field :gross_tips, id: 'tips_input' %>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

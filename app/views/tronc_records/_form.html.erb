@@ -1,10 +1,10 @@
-<%= form_with(model: tronc_record, local: true) do |form| %>
-  <% if tronc_record.errors.any? %>
+<%= form_for(@tronc_record, local: true) do |form| %>
+  <% if @tronc_record.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(tronc_record.errors.count, "error") %> prohibited this tronc_record from being saved:</h2>
+      <h2><%= pluralize(@tronc_record.errors.count, "error") %> prohibited this @tronc_record from being saved:</h2>
 
       <ul>
-        <% tronc_record.errors.full_messages.each do |message| %>
+        <% @tronc_record.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
