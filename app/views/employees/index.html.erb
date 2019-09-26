@@ -11,12 +11,16 @@
           <th colspan="2"></th>
         </tr>
       </thead>
-
+<i class="fa fa-video-camera"></i>
       <tbody>
         <% @employees.each do |employee| %>
           <tr>
             <td><%= employee.name %></td>
-            <td><%= employee.active %></td>
+            <% if employee.active %>
+              <td><i class="fa fa-video-camera"></i></td>
+            <% else %>
+              <td><i class="fa fa-video-camera"></i></td>
+            <% end %>
             <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
             <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
