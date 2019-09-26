@@ -4,6 +4,7 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
+    @employees = Employee.where(user: current_user).all
   end
 
   # GET /employees/1
@@ -14,6 +15,10 @@ class EmployeesController < ApplicationController
   # GET /employees/new
   def new
     @employee = Employee.new
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   # GET /employees/1/edit
@@ -24,13 +29,13 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(employee_params)
-
+    @employee.user = current_user
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
-        format.json { render :show, status: :created, location: @employee }
+        format.html { render :index, notice: 'Employee was created!' }
+        format.json { render :index, status: :created }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
       end
     end

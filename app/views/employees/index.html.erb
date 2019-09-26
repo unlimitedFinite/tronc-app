@@ -1,0 +1,42 @@
+<div class="header">
+  <h2>Employees</h2>
+</div>
+<div class="content">
+  <% if @employees.length > 0 %>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee</th>
+          <th>Active</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @employees.each do |employee| %>
+          <tr>
+            <td><%= employee.name %></td>
+            <td><%= employee.active %></td>
+            <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+            <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>
+      You don't currently have any employees. Please add employees.
+    </p>
+  <% end %>
+  <%= link_to "New Employee", new_employee_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
+  <% if current_user.reports.length == 0 && @employees.length > 0 %>
+    <%= link_to "Back To Setup", :setup_path, class: "btn btn-primary btn-lg" %>
+  <% end %>
+  <div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
+</div>
