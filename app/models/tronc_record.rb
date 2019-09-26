@@ -55,6 +55,13 @@ class TroncRecord < ApplicationRecord
     end
   end
 
+  def self.save_first_attributes(record)
+    record.report = Report.find_by(user: record.user)
+    record.week_end = record.report.report_start
+    record.week_end += 1 until record.week_end.saturday?
+    record.tax_due = record.gross_tips / 5
+  end
+
   def self.save_attributes(record)
     if record.user.reports.length.positive?
       record.week_end = TroncRecord.where(user: record.user).last.week_end + 7
