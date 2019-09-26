@@ -37,15 +37,17 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
-    if current_user.reports.length > 0
-      @tronc_record.week_end = TroncRecord.where(user: current_user).last.week_end + 7
-    end
     @tronc_record.user = current_user
-    @tronc_record.tax_due = @tronc_record.gross_tips / 5
+
+    TroncRecord.save_attributes(@tronc_record)
+    # if current_user.reports.length > 0
+    #   @tronc_record.week_end = TroncRecord.where(user: current_user).last.week_end + 7
+    # end
+    # @tronc_record.tax_due = @tronc_record.gross_tips / 5
     TroncRecord.add_to_report(@tronc_record)
     TroncRecord.check_next_record(@tronc_record)
     Report.tally_up(@tronc_record)
-
+    byebug
     respond_to do |format|
       if @tronc_record.save
         format.html { redirect_to report_path(@tronc_record.report), notice: 'Tronc record was successfully created.' }

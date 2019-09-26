@@ -33,7 +33,6 @@ class TroncRecord < ApplicationRecord
     else # Tronc Record belongs to this months report
       record.report = @report_this_month
     end
-    # Report.tally_up(record)
   end
 
   def self.check_next_record(record)
@@ -50,14 +49,17 @@ class TroncRecord < ApplicationRecord
         Report.create(report_start: report.report_start.next_month, user: record.user)
       end
     else
-      # byebug
       date = record.week_end
-      until date.day == 6
-        date -= 1
-      end
+      date -= 1 until date.day == 6
       record.report = Report.create(report_start: date, user: record.user)
-      record.save
     end
+  end
+
+  def self.save_attributes(record)
+    if record.user.reports.length.positive?
+      record.week_end = TroncRecord.where(user: record.user).last.week_end + 7
+    end
+    record.tax_due = record.gross_tips / 5
   end
 end
 
