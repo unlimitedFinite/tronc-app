@@ -5,6 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+p 'creating user'
+
+User.create(
+  email: 'test@test.com',
+  password: 'secret'
+)
+
 p 'seeding employees....'
 
 Employee.create(
@@ -34,7 +41,8 @@ Report.create(
   report_start: Date.new(2019, 9, 6),
   gross_tips: 260,
   tax_due: 52,
-  net_tips: 208
+  net_tips: 208,
+  user: User.last
 )
 
 p 'seeding first tronc record...'

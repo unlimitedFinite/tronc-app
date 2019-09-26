@@ -1,6 +1,7 @@
 class Report < ApplicationRecord
   has_many :tronc_records
   has_many :employee_records
+  belongs_to :user
 
   before_create :default_values
 

@@ -4,7 +4,6 @@ class TroncRecordsController < ApplicationController
   # GET /tronc_records
   # GET /tronc_records.json
   def index
-    @tronc_records = TroncRecord.all
   end
 
   # GET /tronc_records/1
