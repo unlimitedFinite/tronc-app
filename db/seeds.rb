@@ -44,9 +44,9 @@ p 'seeding initial report...'
 
 Report.create(
   report_start: Date.new(2019, 9, 6),
-  gross_tips: 260,
-  tax_due: 52,
-  net_tips: 208,
+  gross_tips: 100,
+  tax_due: 20,
+  net_tips: 80,
   user: User.last
 )
 
