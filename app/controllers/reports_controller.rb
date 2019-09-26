@@ -28,19 +28,33 @@ class ReportsController < ApplicationController
     end
   end
 
+  def new
+    @report = Report.new
+    @months_array = []
+    date = Date.new(2019, 4, 6)
+    @selected = Date.today
+    @selected -= 1 until @selected.day == 6
+    while date < Date.today do
+      @months_array << [date.strftime("%B %Y"), date]
+      date = date.next_month
+    end
+    respond_to do |f|
+      f.html
+      f.js
+    end
+  end
   # POST /reports
   # POST /reports.json
   def create
-    @report = Report.new
-    last_user_report = Report.where(user: current_user).last
-    if last_user_report.month == 12
-      @report.month = 1
-      @report.year = last_user_report.year + 1
+    if !Report.where(user: current_user).all.length.positive?
+      @report = Report.new(report_params)
     else
-      @report.month = last_user_report.month + 1
-      @report.year = last_user_report.year
+      @report = Report.new
+      last_user_report = Report.where(user: current_user).last
+      @report.report_start = last_user_report.next_month
     end
-
+    @report.user = current_user
+    byebug
     respond_to do |format|
       if @report.save
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
@@ -102,6 +116,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      # params.require(:report).permit()
+      params.require(:report).permit(:report_start)
     end
 end

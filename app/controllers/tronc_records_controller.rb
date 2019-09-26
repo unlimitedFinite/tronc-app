@@ -15,13 +15,13 @@ class TroncRecordsController < ApplicationController
   def new
     @reports = Report.where(user: current_user)
     @tronc_record = TroncRecord.new
-    @weeks_array = []
+    @months_array = []
     @last_saturday = Date.today
     @last_saturday -= 1 until @last_saturday.saturday?
     date = Date.new(2019, 4, 6)
     while date < Date.today do
-      @weeks_array << [date.strftime("%a #{date.day.ordinalize} %b %y"), date]
-      date += 1
+      @months_array << [date.strftime("%a #{date.day.ordinalize} %b %y"), date]
+      date = date.next_month
     end
     respond_to do |f|
       f.html
@@ -37,12 +37,13 @@ class TroncRecordsController < ApplicationController
   # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
-    if current_user.reports.length > 0
-      @tronc_record.week_end = TroncRecord.where(user: current_user).last.week_end + 7
-    end
     @tronc_record.user = current_user
-    @tronc_record.tax_due = @tronc_record.gross_tips / 5
-    TroncRecord.add_to_report(@tronc_record)
+    if !current_user.tronc_records.length.positive?
+      TroncRecord.save_first_attributes(@tronc_record)
+    else
+      TroncRecord.save_attributes(@tronc_record)
+      TroncRecord.add_to_report(@tronc_record)
+    end
     TroncRecord.check_next_record(@tronc_record)
     Report.tally_up(@tronc_record)
 
