@@ -6,6 +6,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-heroku', '2.12.5.0'
 gem 'wkhtmltopdf-binary'
 gem 'devise'
+gem 'mail_interceptor', group: [:development]
 # gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
