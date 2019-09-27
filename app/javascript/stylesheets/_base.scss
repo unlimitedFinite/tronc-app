@@ -37,61 +37,6 @@ a {
   right: 16px
 }
 
-/* NavBar Styles */
-
-.navbar {
-  position: absolute;
-  z-index: 10;
-  display: flex;
-  width: 100%;
-  top: -16px;
-  align-items: baseline;
-  justify-content: space-between;
-  animation: fadein 3s 0s 2s linear;
-
-}
-
-.navbar .logo, .nav {
-  color: #d8d8d8;
-  padding-top: 20px;
-  margin: 0;
-}
-
-.logo {
-  padding: 0 60px;
-}
-
-.nav {
-  padding: 0 60px;
-}
-
-.nav a {
-  font-size: 15px;
-  padding: 0 10px;
-  color: #d8d8d8;
-  transition: all 1s;
-}
-
-.nav a:hover {
-  border-bottom: inset 3px solid #4f74c1;
-  color: #4f74c1;
-  font-size: 15px;
-  transition: all 1s;
-}
-
-@keyframes fadein {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-
 
 
 
