@@ -10,17 +10,17 @@
 
           <div class="field" tabindex='1'>
             <i class="fa fa-user"></i>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
           </div>
 
           <div class="field" tabindex='2'>
             <i class="fa fa-lock"></i>
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: 'Password' %>
           </div>
 
           <div class="field" tabindex='3'>
             <i class="fa fa-lock"></i>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'Confirm Password' %>
           </div>
 
           <div class="actions">
