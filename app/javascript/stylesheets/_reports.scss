@@ -1,3 +1,60 @@
+.reports-container  {
+  vertical-align:middle;
+  text-align: center;
+  width: 750px;
+  margin: 100px auto 0 auto;
+  border: 1.5px solid #00000042;
+  background: #636363a6;
+  box-shadow: 4px 4px 8px #9bc7ca87;
+  border-radius: 8px;
+    .header {
+      border-bottom: 1.5px solid #00000021;
+      background: #6363636b;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      h1 {
+        font-size: 2rem;
+        color: #ecececde;
+        padding: 8px 0;
+        font-family: sans-serif;
+      }
+    }
+    .content {
+      padding: 24px;
+      margin: 0 auto;
+      p {
+        color: #f3f3f3b3;
+        font-size: 1rem;
+        padding: 0 24px 16px 24px;
+      }
+      .actions {
+        margin: 16px auto;
+        display: inline-grid;
+        height: 100%;
+        a {
+          margin-top: 8px;
+          color: #f3f3f3b3;
+          font-size: 0.7rem;
+        }
+        a:hover {
+          padding: 0px;
+          color: white;
+          text-decoration: underline;
+          transition: all 1s 0s ease-in-out;
+        }
+        .btn {
+          width: 250px;
+        }
+      }
+    }
+  // }
+
+}
+
+
+
+
+
 td, th {
   border: 1px solid black;
   text-align: center;
@@ -5,9 +62,10 @@ td, th {
   background: white;
 }
 
-section {
-  padding-bottom: 12px;
-}
+// section {
+//   padding-bottom: 12px;
+//   margin-top: 60px;
+// }
 
 ul {
   list-style: none;
@@ -35,33 +93,34 @@ div.card a:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.header h1, h2 {
-  color: #0a3308bd;
-  text-align: center;
-  padding: 8px 20px;
-  font-size: 3rem;
-  // text-transform: uppercase;
-  font-weight: 700;
-  margin: 0 auto;
-}
+// .header h1, h2 {
+//   color: #0a3308bd;
+//   text-align: center;
+//   padding: 8px 20px;
+//   font-size: 3rem;
+//   // text-transform: uppercase;
+//   font-weight: 700;
+//   margin: 0 auto;
+// }
 
-.header {
-  text-align: center;
-  // padding-top: 62px;
-  border-bottom: 8px solid #818385;
-}
+// .header {
+//   text-align: center;
+//   // padding-top: 62px;
+//   border-bottom: 8px solid #818385;
+// }
 
-.content {
-  background-color: #e0e0e0;
-  padding-top: 16px;
-  text-align: center;
-}
+// .content {
+//   background-color: #e0e0e0;
+//   padding-top: 16px;
+//   text-align: center;
+// }
 
 .card {
   text-align: center;
-  width: 75%;
+  width: 85%;
   margin: 4px auto;
-  border-radius: 12px;
+  border-radius: 8px;
+  background: #ffffff7d;
 }
 
 .card-body {
