@@ -1,8 +1,13 @@
 /* NavBar Styles */
 
+.empty {
+  padding: 100px 0 0 0;
+}
+
 .navbar {
-  position: absolute;
+  position: fixed;
   z-index: 10;
+  top: 0;
   display: flex;
   width: 100%;
   align-items: baseline;
