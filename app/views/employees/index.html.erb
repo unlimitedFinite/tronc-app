@@ -3,26 +3,30 @@
 </section>
 <section class="content">
   <% if @employees.length > 0 %>
-    <table>
+    <table class="employees">
       <thead>
         <tr>
           <th>Employee</th>
-          <th>Active</th>
-          <th colspan="2"></th>
+          <th class="active">Active</th>
         </tr>
       </thead>
-<i class="fa fa-video-camera"></i>
       <tbody>
         <% @employees.each do |employee| %>
           <tr>
             <td><%= employee.name %></td>
             <% if employee.active %>
-              <td><i class="fa fa-video-camera"></i></td>
+              <td class="active"><i class="fa fa-check-circle"></i></td>
             <% else %>
-              <td><i class="fa fa-video-camera"></i></td>
+              <td class="active"><i class="fa fa-times-circle"></i></td>
             <% end %>
-            <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
-            <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="controls">
+              <%= link_to edit_employee_path(employee) do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <%= link_to employee, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
