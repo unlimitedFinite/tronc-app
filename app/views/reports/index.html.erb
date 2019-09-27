@@ -1,24 +1,22 @@
-
-<section class="header">
-  <h1>Reports</h1>
-</section>
-<section class="content">
-  <p>Here is list of all the generated reports. Please click on the current report to add a new record or click on a previous report to see more information</p>
-  <% @reports.each do |report| %>
-    <div class="card g">
-      <%= link_to report_path(report) do  %>
+  <div class="reports-container">
+    <section class="header">
+      <h1>Reports</h1>
+    </section>
+    <section class="content">
+      <p>Here is list of all the generated reports. Please click on the current report to add a new record or click on a previous report to see more information</p>
+      <% @reports.each do |report| %>
+      <div class="card g">
+        <%= link_to report_path(report) do  %>
         <div class="card-body">
-          <% if report == Report.last %>
-            <div class="new">
-              Current Report
-            </div>
+          <% if report == Report.where(user: current_user).last %>
+          <div class="new">
+            Current Report
+          </div>
           <% end %>
           <%= report.report_start.strftime("%B %Y") %>
-          <%  %>
         </div>
+        <% end %>
+      </div>
       <% end %>
-    </div>
-  <% end %>
-</section>
-
-
+    </section>
+  </div>
