@@ -1,6 +1,23 @@
 body, html {
   height: 100%;
-  background: #e0e0e063;
+background: rgb(42,82,119);
+background: -webkit-linear-gradient(bottom, rgba(42,82,119,0.9179487179487179) 0%, rgba(83,115,157,1) 51%, rgba(26,32,56,0.982051282051282) 100%, rgba(86,55,173,1) 100%);
+background: -o-linear-gradient(bottom, rgba(42,82,119,0.9179487179487179) 0%, rgba(83,115,157,1) 51%, rgba(26,32,56,0.982051282051282) 100%, rgba(86,55,173,1) 100%);
+background: linear-gradient(to top, rgba(42,82,119,0.9179487179487179) 0%, rgba(83,115,157,1) 51%, rgba(26,32,56,0.982051282051282) 100%, rgba(86,55,173,1) 100%);
+}
+
+a:hover {
+    color: #409c73;
+    /* text-decoration: underline; */
+    /* background: orange; */
+    padding: 3px;
+    transition: all 0.5s 0s ease-in;
+}
+
+a {
+    text-decoration: none;
+    color: #0f5d0f;
+    transition: all 0.5s 0s ease-in;
 }
 
 .notice {
@@ -23,7 +40,7 @@ body, html {
 /* NavBar Styles */
 
 .navbar {
-  // position: absolute;
+  position: absolute;
   z-index: 10;
   display: flex;
   width: 100%;
@@ -31,7 +48,7 @@ body, html {
   align-items: baseline;
   justify-content: space-between;
   animation: fadein 3s 0s 2s linear;
-  background: black;
+
 }
 
 .navbar .logo, .nav {
@@ -72,4 +89,83 @@ body, html {
   100% {
     opacity: 1;
   }
+}
+
+// Form CSS //
+
+.form-grand-parent  {
+  display:table;
+  height:100%;
+  margin: 0 auto;
+}
+
+.form-parent {
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.devise-form {
+  text-align: center;
+  width: 350px;
+  border: 1.5px solid #00000042;
+  background: #636363a6;
+  box-shadow: 4px 4px 8px #9bc7ca87;
+  border-radius: 8px;
+}
+
+.form-header {
+  border-bottom: 1.5px solid #00000021;
+  background: #6363636b;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  h2 {
+    font-size: 1rem;
+    color: #ecececde;
+    padding: 12px 0;
+    font-family: sans-serif;
+  }
+}
+
+.form-content {
+  margin: 8px auto;
+}
+
+.actions {
+  margin: 24px auto;
+  .btn {
+    width: 250px;
+  }
+}
+
+.field {
+  margin: 16px auto;
+  display: flex;
+  width: 250px;
+  border: 1px solid #00000021;
+  border-radius: 4px;
+  background: #0000002b;
+  justify-content: space-between;
+  box-shadow: 1px 1px 7px inset #31313194;
+  input {
+    border: none;
+    background-color: unset;
+    color: #ecececde;
+    width: 90%;
+    padding-left: 8px;
+  } input:focus {
+    outline: none;
+    box-shadow: none;
+  } .fa {
+    color: #ecececde;
+    background-color: unset;
+    align-self: center;
+    padding-left: 8px;
+  }
+}
+
+.focused {
+    border-color: rgba(11, 41, 14, 0.21);
+    box-shadow: 0 1px 1px rgba(212, 212, 212, 0.34) inset, 0 0 8px #bfcebc;
+    outline: 0 none;
+  background-color: #208c1b14;
 }

@@ -1,0 +1,41 @@
+.fa-edit {
+  transition: 0.3s 0s ease-in;
+  color: #18500c85;
+  text-decoration: none;
+}
+
+.fa-edit:hover {
+  color: green;
+  transition: 0.3s 0s ease-in;
+}
+
+.fa-check-circle {
+  color: green;
+}
+
+.fa-times-circle {
+  color: red;
+}
+
+.fa-trash {
+  transition: 0.3s 0s ease-in;
+  color: #c71f1fab;
+  padding-left: 6px;
+}
+
+.fa-trash:hover {
+  color: red;
+  transition: 0.3s 0s ease-in;
+}
+
+.active {
+  width: 80px;
+}
+
+td.controls {
+  width: 65px;
+}
+
+table {
+  margin-bottom: 16px;
+}

@@ -1,5 +1,5 @@
 class TroncRecord < ApplicationRecord
-  has_many :employee_records
+  has_many :employee_records, dependent: :destroy
   belongs_to :report
   belongs_to :user
 
@@ -64,7 +64,7 @@ class TroncRecord < ApplicationRecord
 
   def self.save_attributes(record)
     if record.user.reports.length.positive?
-      record.week_end = TroncRecord.where(user: record.user).last.week_end + 7
+      record. week_end = TroncRecord.where(user: record.user).last.week_end + 7
     end
     record.tax_due = record.gross_tips / 5
   end

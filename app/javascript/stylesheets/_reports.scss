@@ -40,7 +40,7 @@ div.card a:hover {
   text-align: center;
   padding: 8px 20px;
   font-size: 3rem;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   font-weight: 700;
   margin: 0 auto;
 }
@@ -52,7 +52,7 @@ div.card a:hover {
 }
 
 .content {
-  background-color: #e0e0e063;
+  background-color: #e0e0e0;
   padding-top: 16px;
   text-align: center;
 }
@@ -90,19 +90,21 @@ section.content p {
 }
 
 section.content table {
-  margin: 8px auto;
+  margin: 8px auto 32px auto;
 }
 
 .btn-primary {
   background-color: #2f611ccc;
   border-color: #2f611ccc;
+  box-shadow: none;
   transition: all 0.4s ease-in-out;
 }
 
 .btn-primary:hover {
   background-color: #1c615bcc;
   border-color: #1c615bcc;
-  transition: all 0.4s ease-in-out;
+  box-shadow: 0 1px 1px rgba(212, 212, 212, 0.34) inset, 0 0 2px #bfcebc;
+  transition: all 0.5s ease-in-out;
 }
 
 .tax-code {
@@ -113,9 +115,8 @@ section.content table {
   background-color: #00000000;
 }
 
-input:focus {
-  border-color: rgba(79, 125, 70, 0.47);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(79, 125, 70);
+input:focus, .btn:focus, .btn-primary:focus {
+  border-color: rgba(11, 41, 14, 0.21);
+  box-shadow: 0 1px 1px rgba(212, 212, 212, 0.34) inset, 0 0 8px #bfcebc;
   outline: 0 none;
-  background-color: #00000000;
 }

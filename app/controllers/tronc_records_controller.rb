@@ -1,17 +1,7 @@
 class TroncRecordsController < ApplicationController
-  before_action :set_tronc_record, only: [:show, :edit, :update, :destroy]
+  before_action :set_tronc_record, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /tronc_records
-  # GET /tronc_records.json
-  def index
-  end
 
-  # GET /tronc_records/1
-  # GET /tronc_records/1.json
-  def show
-  end
-
-  # GET /tronc_records/new
   def new
     @reports = Report.where(user: current_user)
     @tronc_record = TroncRecord.new
@@ -29,12 +19,9 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  # GET /tronc_records/1/edit
   def edit
   end
 
-  # POST /tronc_records
-  # POST /tronc_records.json
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
     @tronc_record.user = current_user
@@ -58,8 +45,6 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /tronc_records/1
-  # PATCH/PUT /tronc_records/1.json
   def update
     respond_to do |format|
       if @tronc_record.update(tronc_record_params)
