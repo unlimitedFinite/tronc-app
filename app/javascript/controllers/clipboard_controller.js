@@ -17,3 +17,4 @@ export default class extends Controller {
     document.execCommand('copy')
   }
 }
+

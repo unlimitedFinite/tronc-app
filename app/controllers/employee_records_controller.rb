@@ -27,7 +27,7 @@ class EmployeeRecordsController < ApplicationController
 
     respond_to do |format|
       if @employee_record.save
-        format.html { redirect_to @employee_record, notice: 'Employee record was successfully created.' }
+        format.html { redirect_to @employee_record, success: 'Employee record was successfully created.' }
         format.json { render :show, status: :created, location: @employee_record }
       else
         format.html { render :new }
