@@ -23,6 +23,10 @@ class EmployeesController < ApplicationController
 
   # GET /employees/1/edit
   def edit
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   # POST /employees
@@ -46,8 +50,8 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @employee }
+        format.html { redirect_to employees_path, notice: 'Employee was successfully updated.' }
+        format.json { render :index, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @employee.errors, status: :unprocessable_entity }
