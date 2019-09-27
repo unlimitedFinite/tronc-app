@@ -3,6 +3,20 @@ body, html {
   background: #e0e0e063;
 }
 
+a:hover {
+    color: #409c73;
+    /* text-decoration: underline; */
+    /* background: orange; */
+    padding: 3px;
+    transition: all 0.5s 0s ease-in;
+}
+
+a {
+    text-decoration: none;
+    color: #0f5d0f;
+    transition: all 0.5s 0s ease-in;
+}
+
 .notice {
   position: absolute;
   color: #0735088c;
@@ -23,7 +37,7 @@ body, html {
 /* NavBar Styles */
 
 .navbar {
-  // position: absolute;
+  position: absolute;
   z-index: 10;
   display: flex;
   width: 100%;
@@ -31,7 +45,10 @@ body, html {
   align-items: baseline;
   justify-content: space-between;
   animation: fadein 3s 0s 2s linear;
-  background: black;
+  background: rgb(25,36,0);
+  background: -webkit-linear-gradient(308deg, rgba(25,36,0,1) 0%, rgba(75,99,71,1) 16%, rgba(9,121,47,1) 52%, rgba(55,173,121,1) 100%);
+  background: -o-linear-gradient(308deg, rgba(25,36,0,1) 0%, rgba(75,99,71,1) 16%, rgba(9,121,47,1) 52%, rgba(55,173,121,1) 100%);
+  background: linear-gradient(38deg, rgba(25,36,0,1) 0%, rgba(75,99,71,1) 16%, rgba(9,121,47,1) 52%, rgba(55,173,121,1) 100%);
 }
 
 .navbar .logo, .nav {
@@ -72,4 +89,50 @@ body, html {
   100% {
     opacity: 1;
   }
+}
+
+.form-grand-parent  {
+  display:table;
+  height:100%;
+  margin: 0 auto;
+}
+
+.form-parent {
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.devise-form {
+  text-align: center;
+  width: 300px;
+  border: 1.5px solid #00800078;
+  background: white;
+  box-shadow: 4px 4px 8px #315f3187;
+  border-radius: 8px;
+}
+
+.form-header {
+  border-bottom: 1.5px solid green;
+}
+
+.field {
+  margin: 16px auto;
+  width: 200px;
+  border: 1px solid green;
+  border-radius: 4px;
+  input {
+    border: none;
+  } input:focus {
+    outline: none;
+    box-shadow: none;
+  } .fa {
+    color:green;
+  }
+}
+
+.focused {
+  border-color: rgba(79, 125, 70, 0.47);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(79, 125, 70);
+  outline: 0 none;
+  background-color: #00000000;
 }

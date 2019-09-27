@@ -23,9 +23,6 @@
               <%= link_to edit_employee_path(employee), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window'} do %>
                 <i class="fa fa-edit"></i>
               <% end %>
-              <%= link_to employee, method: :delete, data: { confirm: 'Are you sure? You cannot undo this operation!' } do %>
-              <i class="fa fa-trash"></i>
-              <% end %>
             </td>
           </tr>
         <% end %>
