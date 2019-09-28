@@ -19,6 +19,8 @@ $(window).bind("load", function(){
   $('.alert').fadeOut();
   }, 6000);
 
+
+
 });
 
 
