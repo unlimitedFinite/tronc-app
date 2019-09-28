@@ -1,9 +1,13 @@
+// Reports Container //////////////////
+
 .reports-parent {
-  padding-top: 80px;
+  padding-top: 16px;
   .reports-container  {
     vertical-align:middle;
     text-align: center;
-    width: 750px;
+    width: 90%;
+    min-width: 400px;
+    max-width: 750px;
     margin: 0 auto 0 auto;
     border: 1.5px solid #00000042;
     background: #636363a6;
@@ -53,8 +57,48 @@
 }
 
 
+// Report Index Card ////////////////////
+
+.card {
+  text-align: center;
+  width: 85%;
+  margin: 4px auto;
+  border-radius: 8px;
+  background: #ffffff7d;
+  a {
+    color: #0a3308bd;
+    border-radius: 12px;
+    box-shadow: 0 0 0 0 #154c13 inset;
+    transition: all 0.5s ease-in-out;
+    .card-body {
+      padding: 0.5rem;
+      .new {
+        position: absolute;
+        bottom: 12px;
+        right: 16px;
+        font-size: 0.7rem;
+        color: #5d8614;
+      }
+    }
+  }
+  a:hover {
+    color: #194e22;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: -2px -2px 4px 1px #154c13 inset;
+    transition: all 0.3s ease-in-out;
+  }
+}
+.card:nth-child(2) {
+  .card-body {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+}
 
 
+// Reports Show CSS ////////////////////
 
 td, th {
   border: 1px solid black;
@@ -62,11 +106,6 @@ td, th {
   width: 150px;
   background: white;
 }
-
-// section {
-//   padding-bottom: 12px;
-//   margin-top: 60px;
-// }
 
 ul {
   list-style: none;
@@ -79,75 +118,14 @@ th {
   padding: 4px 0;
 }
 
-div.card a {
-  color: #0a3308bd;
-  border-radius: 12px;
-  box-shadow: 0 0 0 0 #154c13 inset;
-  transition: all 0.5s ease-in-out;
-}
 
-div.card a:hover {
-  color: #194e22;
-  text-decoration: none;
-  border-radius: 12px;
-  box-shadow: -2px -2px 4px 1px #154c13 inset;
-  transition: all 0.3s ease-in-out;
-}
 
-// .header h1, h2 {
-//   color: #0a3308bd;
-//   text-align: center;
-//   padding: 8px 20px;
-//   font-size: 3rem;
-//   // text-transform: uppercase;
-//   font-weight: 700;
-//   margin: 0 auto;
-// }
-
-// .header {
-//   text-align: center;
-//   // padding-top: 62px;
-//   border-bottom: 8px solid #818385;
-// }
-
-// .content {
-//   background-color: #e0e0e0;
-//   padding-top: 16px;
-//   text-align: center;
-// }
-
-.card {
-  text-align: center;
-  width: 85%;
-  margin: 4px auto;
-  border-radius: 8px;
-  background: #ffffff7d;
-}
-
-.card-body {
-  padding: 0.5rem;
-}
-
-section.content div.card:nth-child(2) {
-  .card-body {
-    padding: 1rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-}
 
 section.content p {
   padding: 12px 64px;
   margin: 8px auto;
 }
 
-.new {
-  position: absolute;
-  bottom: 12px;
-  right: 16px;
-  font-size: 0.7rem;
-  color: #5d8614;
-}
 
 section.content table {
   margin: 8px auto 32px auto;

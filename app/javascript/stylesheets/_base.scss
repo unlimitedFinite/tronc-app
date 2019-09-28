@@ -1,9 +1,10 @@
 html {
-  height: 100%;
+  height: fit-content;
 }
 
 body {
   height: 100%;
+  min-height: 100vh;
   background: rgb(42,82,119);
   background: -webkit-linear-gradient(bottom, rgba(42,82,119,0.9179487179487179) 0%, rgba(83,115,157,1) 51%, rgba(26,32,56,0.982051282051282) 100%, rgba(86,55,173,1) 100%);
   background: -o-linear-gradient(bottom, rgba(42,82,119,0.9179487179487179) 0%, rgba(83,115,157,1) 51%, rgba(26,32,56,0.982051282051282) 100%, rgba(86,55,173,1) 100%);
