@@ -25,7 +25,11 @@
         <%= form.select(:week_end, options_for_select(@months_array, @last_saturday), {}, { :class => 'select_week' }) %>
       </div>
     <% end %>
-    <p>Please enter the gross amount of tips for this week (<%= @week %>)</p>
+    <p>Please enter the gross amount of tips for the following week</p>
+    <div class="field">
+      <i class="fa fa-calendar-alt"></i>
+      <input type="text" value="<%= (@this_week_end - 7).strftime("#{(@this_week_end-7).day.ordinalize} %b") %> - <%= @this_week_end.strftime("#{(@this_week_end).day.ordinalize} %b") %>" disabled>
+    </div>
     <div class="field">
       <i class="fa fa-pound-sign"></i>
       <%= form.number_field :gross_tips, placeholder: 'Gross Tips' %>
