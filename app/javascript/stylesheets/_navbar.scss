@@ -5,29 +5,29 @@
 }
 
 .navbar {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  display: flex;
-  width: 100%;
+  // position: fixed;
+  // z-index: 10;
+  // top: 0;
+  // display: flex;
+  // width: 100%;
+  background-color: none;
   align-items: baseline;
   justify-content: space-between;
-  padding: 8px 0 16px 0;
+  padding-bottom: 16px;
   animation: fadein 3s 0s 2s linear;
-  .logo {
+  .brand {
     padding: 0 32px;
     color: #d8d8d8;
     margin: 0;
   }
-  span {
+  span.welcome {
     position: absolute;
     top: 40px;
     left: 70px;
     font-size: 0.8rem;
     color: #c5c5c5b5;
   }
-  .nav {
-    padding: 0 32px;
+  .nav-link {
     color: #d8d8d8;
     margin: 0;
     a {
@@ -43,6 +43,11 @@
       transition: all 1s;
     }
   }
+}
+
+.navbar-collapse {
+  text-align: right;
+  padding-top: 12px;
 }
 
 @keyframes fadein {
