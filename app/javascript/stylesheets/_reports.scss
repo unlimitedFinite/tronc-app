@@ -3,7 +3,9 @@
   .reports-container  {
     vertical-align:middle;
     text-align: center;
-    width: 750px;
+    width: 90%;
+    min-width: 400px;
+    max-width: 750px;
     margin: 0 auto 0 auto;
     border: 1.5px solid #00000042;
     background: #636363a6;
