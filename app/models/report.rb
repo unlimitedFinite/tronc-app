@@ -5,6 +5,10 @@ class Report < ApplicationRecord
 
   before_create :default_values
 
+  monetize :gross_tips, as: 'gross'
+  monetize :net_tips, as: 'net'
+  monetize :tax_due, as: 'tax'
+
   def self.tally_up(record)
     report = record.report
     report.gross_tips += record.gross_tips
