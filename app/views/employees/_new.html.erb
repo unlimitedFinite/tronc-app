@@ -20,8 +20,12 @@
 
   <div class="field" tabindex="1">
     <i class="fa fa-user"></i>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, placeholder: 'Employees Name..' %>
   </div>
+
+  <p>
+    Is employee currently receiving tips?
+  </p>
 
   <div class="slideTwo">
     <%= form.check_box :active, id: 'slideTwo' %>

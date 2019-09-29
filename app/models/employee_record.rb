@@ -3,5 +3,5 @@ class EmployeeRecord < ApplicationRecord
   belongs_to :tronc_record
   belongs_to :report
 
-  monetize :tips, as: 'tips'
+  monetize :tips, as: 'net'
 end
