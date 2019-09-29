@@ -55,7 +55,6 @@ class ReportsController < ApplicationController
       @report.report_start = last_user_report.next_month
     end
     @report.user = current_user
-    byebug
     respond_to do |format|
       if @report.save
         format.html { redirect_to @report, notice: 'Report was successfully created.' }

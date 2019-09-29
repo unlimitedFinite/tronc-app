@@ -10,9 +10,7 @@
     <p>Below you can see the tronc records entered for the current period. Once the report is complete, please come back to see the finished report, which will give you the options to send results to your accountant and arrange payment to HMRC</p>
   <% else %>
     <p>
-      The report for this period is now complete, please arrange payment to HMRC for <strong>£<%= @report.tax_due %></strong> as soon as possible.
-      <br><%= @report.user.email %>
-      <br>
+      This months tronc is complete, please arrange payment to HMRC for <strong>£<%= @report.tax_due %></strong> as soon as possible.
       <div data-controller="clipboard members dashboard">
         <input class="tax-code" type="text" data-target="clipboard.source" value="475PD00935391" readonly>
         <button data-action="clipboard#copy" class="clipboard-button btn btn-secondary">

@@ -42,6 +42,10 @@ Employee.create(
 
 p 'seeding initial report...'
 
+
+# Seed File is not saving all the required
+# data - Employee records seems to be the culprit
+
 Report.create(
   report_start: Date.new(2019, 9, 6),
   gross_tips: 100,
