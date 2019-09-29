@@ -36,6 +36,9 @@
       color: #d8d8d8;
       transition: all 1s;
     }
+    li.nav-item {
+      padding: 0 16px;
+    }
     a:hover {
       border-bottom: inset 3px solid #4f74c1;
       color: #4f74c1;
@@ -47,7 +50,8 @@
 
 .navbar-collapse {
   text-align: right;
-  padding-top: 12px;
+  // padding-top: 12px;
+  justify-content: flex-end;
 }
 
 @keyframes fadein {
