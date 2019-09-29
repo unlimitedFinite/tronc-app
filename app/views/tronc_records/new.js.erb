@@ -6,7 +6,7 @@ $(document).on('shown.bs.modal', function(e) {
 
 function focusFields(){
   const fields = document.querySelectorAll('.field');
-  fields[0].classList.add('focused');
+  fields[1].classList.add('focused');
 
   fields.forEach((f) => {
     f.addEventListener('focusin', function(e){

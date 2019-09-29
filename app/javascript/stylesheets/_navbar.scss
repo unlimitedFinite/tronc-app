@@ -20,9 +20,14 @@
   padding-bottom: 16px;
   animation: fadein 3s 0s 2s linear;
   .brand {
-    padding: 0 32px;
+    padding: 0 16px;
+    font-size: 1.5rem;
     color: #d8d8d8;
     margin: 0;
+  }
+  .brand:hover {
+    text-decoration: none;
+    font-size: 1.55rem;
   }
   span.welcome {
     position: absolute;
