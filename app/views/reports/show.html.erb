@@ -10,15 +10,18 @@
     <p>Below you can see the tronc records entered for the current period. Once the report is complete, please come back to see the finished report, which will give you the options to send results to your accountant and arrange payment to HMRC</p>
   <% else %>
     <p>
-      The report for this period is now complete, please check over the information below and proceed to arrange payment to HMRC for <strong>£<%= @report.tax_due %></strong> as soon as possible.
+      The report for this period is now complete, please arrange payment to HMRC for <strong>£<%= @report.tax_due %></strong> as soon as possible.
+      <br><%= @report.user.email %>
       <br>
       <div data-controller="clipboard members dashboard">
         <input class="tax-code" type="text" data-target="clipboard.source" value="475PD00935391" readonly>
         <button data-action="clipboard#copy" class="clipboard-button btn btn-secondary">
           Copy Code
         </button>
-        <%= link_to "Pay HMRC", 'https://www.tax.service.gov.uk/pay/5d883a1e210000d90c364a87/enter-details', class: "btn btn-primary" %>
-        <%= link_to "Email Report", report_path(@report, format: :pdf), class:"btn btn-primary" %>
+        <br>
+        <br>
+        <%= link_to "Pay HMRC", 'https://www.tax.service.gov.uk/pay/5d9048c3210000f946870f4e/choose-a-way-to-pay', target: 'blank', class: "btn btn-primary" %>
+        <%= link_to "PDF Report", report_path(@report, format: :pdf), target: 'blank', class:"btn btn-primary" %>
       </div>
     </p>
   <% end %>
@@ -76,13 +79,6 @@
     </button> -->
     <%#= link_to "New Record", new_tronc_record_path, class: 'btn btn-primary'  %>
     <%= link_to "Add Record", new_tronc_record_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
-    <div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content devise-form">
-
-        </div>
-      </div>
-    </div>
   <% end %>
 </section>
 

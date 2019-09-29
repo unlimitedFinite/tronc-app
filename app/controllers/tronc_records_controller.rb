@@ -5,7 +5,11 @@ class TroncRecordsController < ApplicationController
   def new
     @reports = Report.where(user: current_user)
     @tronc_record = TroncRecord.new
-    @this_week_end = TroncRecord.where(user: current_user).last.week_end + 7
+    @this_week_start = TroncRecord.where(user: current_user).last.week_end + 1
+    @this_week_end = @this_week_start + 6
+    @this_week_start = @this_week_start.strftime("#{@this_week_start.day.ordinalize} %b")
+    @this_week_end = @this_week_end.strftime("#{@this_week_end.day.ordinalize} %b")
+
     @months_array = []
     @last_saturday = Date.today
     @last_saturday -= 1 until @last_saturday.saturday?

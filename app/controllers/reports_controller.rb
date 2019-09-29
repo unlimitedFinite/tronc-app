@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :update, :destroy]
   before_action :authenticate_user!
+  # before_action :check_current_user, only: [:show]
 
   def index
     @reports = Report.all.where(user: current_user).order(report_start: 'DESC')
@@ -10,7 +11,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @tronc_records = TroncRecord.where(report: @report)
+    @tronc_records = TroncRecord.where(report: @report, user: current_user)
     @employee_records = EmployeeRecord.where(report: @report)
     @employees = @employee_records.group_by(&:employee)
     respond_to do |format|
@@ -111,10 +112,17 @@ class ReportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_report
       @report = Report.find(params[:id])
+      check_current_user(@report)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit(:report_start)
+    end
+
+    def check_current_user(report)
+      unless report.user == current_user
+        redirect_to reports_path
+      end
     end
 end

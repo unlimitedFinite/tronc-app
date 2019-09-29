@@ -4,6 +4,10 @@
   padding: 100px 0 0 0;
 }
 
+.bg-dark {
+  background-color: #343a40f0 !important;
+}
+
 .navbar {
   // position: fixed;
   // z-index: 10;
@@ -16,16 +20,24 @@
   padding-bottom: 16px;
   animation: fadein 3s 0s 2s linear;
   .brand {
-    padding: 0 32px;
+    padding: 0 16px;
+    font-size: 1.5rem;
     color: #d8d8d8;
     margin: 0;
+  }
+  .brand:hover {
+    text-decoration: none;
+    font-size: 1.55rem;
   }
   span.welcome {
     position: absolute;
     top: 40px;
-    left: 70px;
+    left: 80px;
     font-size: 0.8rem;
     color: #c5c5c5b5;
+  }
+  .nav-item {
+    padding: 0 20px;
   }
   .nav-link {
     color: #d8d8d8;
@@ -35,6 +47,9 @@
       padding: 0 10px;
       color: #d8d8d8;
       transition: all 1s;
+    }
+    li.nav-item {
+      padding: 0 16px;
     }
     a:hover {
       border-bottom: inset 3px solid #4f74c1;
@@ -47,7 +62,8 @@
 
 .navbar-collapse {
   text-align: right;
-  padding-top: 12px;
+  // padding-top: 12px;
+  justify-content: flex-end;
 }
 
 @keyframes fadein {

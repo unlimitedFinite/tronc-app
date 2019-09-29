@@ -1,7 +1,8 @@
 // Reports Container //////////////////
 
 .reports-parent {
-  padding-top: 16px;
+  padding-top: 80px;
+  padding-bottom: 32px;
   .reports-container  {
     vertical-align:middle;
     text-align: center;
@@ -32,6 +33,12 @@
         color: #f3f3f3b3;
         font-size: 1rem;
         padding: 0 24px 16px 24px;
+      }
+      h3 {
+        color: #f0f0f0;
+      }
+      li {
+        color: #f3f3f3b3;
       }
       .actions {
         margin: 16px auto;
@@ -118,17 +125,13 @@ th {
   padding: 4px 0;
 }
 
-
-
-
 section.content p {
   padding: 12px 64px;
   margin: 8px auto;
 }
 
-
 section.content table {
-  margin: 8px auto 32px auto;
+  margin: 8px auto 16px auto;
 }
 
 .btn-primary {
@@ -145,11 +148,18 @@ section.content table {
   transition: all 0.5s ease-in-out;
 }
 
+.btn-secondary:hover {
+  background-color: #97ccf36e;
+}
+
 .tax-code {
   padding: 6px;
+  color: #f8f8ffba;
   vertical-align: middle;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
+  border: 1px solid #bbceb47a;
+  border-radius: 6px;
   background-color: #00000000;
 }
 
