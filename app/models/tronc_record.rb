@@ -62,7 +62,7 @@ class TroncRecord < ApplicationRecord
     record.report = Report.find_by(user: record.user)
     record.week_end = record.report.report_start
     record.week_end += 1 until record.week_end.saturday?
-    record.tax_due = record.gross_tips / 5
+    record.tax_due = record.gross_tips / 5 unless record.gross_tips.nil?
   end
 
   def self.save_attributes(record)

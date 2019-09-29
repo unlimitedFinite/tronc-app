@@ -33,8 +33,8 @@ class Report < ApplicationRecord
   private
 
     def default_values
-      self.gross_tips ||= 0
-      self.tax_due ||= 0
-      self.net_tips ||= 0
+      self.gross ||= 0
+      self.tax ||= 0
+      self.net ||= 0
     end
 end

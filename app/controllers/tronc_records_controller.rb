@@ -4,12 +4,16 @@ class TroncRecordsController < ApplicationController
 
   def new
     @reports = Report.where(user: current_user)
-    @tronc_record = TroncRecord.new
-    @this_week_start = TroncRecord.where(user: current_user).last.week_end + 1
+    @tronc_record = TroncRecord.new(user: current_user)
+    if TroncRecord.where(user: current_user).length > 1
+      @this_week_start = TroncRecord.where(user: current_user).last.week_end + 1
+    else
+      TroncRecord.save_first_attributes(@tronc_record)
+      @this_week_start = @tronc_record.week_end - 6
+    end
     @this_week_end = @this_week_start + 6
     @this_week_start = @this_week_start.strftime("#{@this_week_start.day.ordinalize} %b")
     @this_week_end = @this_week_end.strftime("#{@this_week_end.day.ordinalize} %b")
-
     @months_array = []
     @last_saturday = Date.today
     @last_saturday -= 1 until @last_saturday.saturday?
