@@ -25,7 +25,16 @@
         <%= form.select(:week_end, options_for_select(@months_array, @last_saturday), {}, { :class => 'select_week' }) %>
       </div>
     <% end %>
-    <p>Please enter the gross amount of tips for the following week</p>
+    <p>Please check the staff list and the date before submitting new record.
+      <br>
+      <span class="list">
+        <% @employees.each do |e| %>
+          <strong><%= e.name %>, </strong>
+        <% end %>
+      </span>
+      <br>
+      <%= link_to "Change Employees", employees_path, class: ''  %>
+    </p>
     <div class="field" tabindex="-1">
       <i class="fa fa-calendar-alt"></i>
       <input type="text" value="<%= @this_week_start %> - <%= @this_week_end %>" disabled>

@@ -40,8 +40,17 @@
     margin: 8px auto;
     p {
       color: #f3f3f3b3;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       padding: 0 8px 0 8px;
+      a {
+        margin-top: 8px;
+        color: #f3f3f3b3;
+        font-size: 0.8rem;
+      }
+      .list {
+        color: #0f4004d4;
+
+      }
     }
     select {
       width: 100%;
