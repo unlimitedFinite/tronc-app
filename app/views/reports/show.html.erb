@@ -17,8 +17,10 @@
         <button data-action="clipboard#copy" class="clipboard-button btn btn-secondary">
           Copy Code
         </button>
-        <%= link_to "Pay HMRC", 'https://www.tax.service.gov.uk/pay/5d883a1e210000d90c364a87/enter-details', class: "btn btn-primary" %>
-        <%= link_to "Email Report", report_path(@report, format: :pdf), class:"btn btn-primary" %>
+        <br>
+        <br>
+        <%= link_to "Pay HMRC", 'https://www.tax.service.gov.uk/pay/5d9048c3210000f946870f4e/choose-a-way-to-pay', target: 'blank', class: "btn btn-primary" %>
+        <%= link_to "PDF Report", report_path(@report, format: :pdf), target: 'blank', class:"btn btn-primary" %>
       </div>
     </p>
   <% end %>
