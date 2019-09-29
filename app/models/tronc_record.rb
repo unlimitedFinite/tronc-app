@@ -5,6 +5,9 @@ class TroncRecord < ApplicationRecord
 
   after_create :make_employee_records
 
+  monetize :gross_tips, as: 'gross'
+  monetize :tax_due, as: 'tax'
+
   def make_employee_records
     # Define list of active employees
     employees = Employee.where(active: true, user: self.user)
