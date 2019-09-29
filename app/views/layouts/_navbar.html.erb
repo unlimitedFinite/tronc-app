@@ -1,5 +1,8 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">TroncSystem.com</a>
+  <%= link_to reports_path, class: 'brand' do  %>
+    <i class="fa fa-balance-scale"></i> TroncSystem.com
+  <% end %>
+ <!--  <a class="navbar-brand" href="reports/index">TroncSystem.com</a> -->
   <% if current_user %>
   <span class="welcome">Welcome <%= current_user.email %></span>
   <% end %>

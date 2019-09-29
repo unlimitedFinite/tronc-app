@@ -5,7 +5,7 @@
   <h2>Update Employee</h2>
 </div>
 <%= form_for(@employee, local: true) do |form| %>
-  <div class="modal-body">
+  <div class="form-content">
 
     <% if @employee.errors.any? %>
       <div id="error_explanation">
@@ -23,13 +23,13 @@
       <%= form.text_field :name %>
     </div>
 
-    <div class="field" tabindex="2">
-      <%= form.label :active %>
-      <%= form.check_box :active %>
+    <div class="slideTwo">
+      <%= form.check_box :active, id: 'slideTwo' %>
+      <label for="slideTwo"></label>
     </div>
 
-  </div>
-  <div class="actions">
-    <%= form.submit 'Update', remote: true, class: 'btn btn-primary' %>
+    <div class="actions">
+      <%= form.submit 'Update', remote: true, class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
