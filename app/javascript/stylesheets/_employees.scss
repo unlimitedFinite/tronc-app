@@ -1,3 +1,14 @@
+.employees-parent {
+  @extend .reports-parent;
+  .employees-container {
+    @extend .reports-container;
+    .edit {
+      width: 80px;
+    }
+  }
+}
+
+
 .fa-edit {
   transition: 0.3s 0s ease-in;
   color: #18500c85;
