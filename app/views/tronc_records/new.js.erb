@@ -3,6 +3,7 @@ $("#modal-window").modal();
 $(document).on('shown.bs.modal', function(e) {
   $('input:visible:enabled:first', e.target).focus();
 });
+
 function focusFields(){
   const fields = document.querySelectorAll('.field');
   fields[0].classList.add('focused');

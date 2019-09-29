@@ -19,3 +19,6 @@ function focusFields(){
 }
 
 focusFields();
+
+i = $('.field.focused input')[0];
+i.selectionStart = i.value.length;
