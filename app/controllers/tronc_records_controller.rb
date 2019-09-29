@@ -5,6 +5,7 @@ class TroncRecordsController < ApplicationController
   def new
     @reports = Report.where(user: current_user)
     @tronc_record = TroncRecord.new(user: current_user)
+    @employees = Employee.where(user: current_user, active: true)
     if TroncRecord.where(user: current_user).length > 1
       @this_week_start = TroncRecord.where(user: current_user).last.week_end + 1
     else
