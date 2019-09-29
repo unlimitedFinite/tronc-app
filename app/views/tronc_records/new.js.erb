@@ -1,20 +1,22 @@
-
-
 $("#modal-window").find(".modal-content").html("<%= j (render 'new') %>");
 $("#modal-window").modal();
 $(document).on('shown.bs.modal', function(e) {
   $('input:visible:enabled:first', e.target).focus();
 });
-const fields = document.querySelectorAll('.field');
+function focusFields(){
+  const fields = document.querySelectorAll('.field');
+  fields[0].classList.add('focused');
 
-fields[0].classList.add('focused');
+  fields.forEach((f) => {
+    f.addEventListener('focusin', function(e){
+      f.classList.add('focused');
+    });
+    f.addEventListener('focusout', function(e){
+      f.classList.remove('focused');
+    });
+  });
+}
 
-fields.forEach((f) => {
-  f.addEventListener('focusin', function(e){
-    f.classList.add('focused');
-  });
-  f.addEventListener('focusout', function(e){
-    f.classList.remove('focused');
-  });
-});
+focusFields();
+
 

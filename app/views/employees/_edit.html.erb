@@ -1,8 +1,8 @@
-<div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">New Employee</h5>
+<div class="form-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
+  <h2>Update Employee</h2>
 </div>
 <%= form_for(@employee, local: true) do |form| %>
   <div class="modal-body">
@@ -18,20 +18,18 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= form.label :name %>
+    <div class="field" tabindex="-1">
+      <i class="fa fa-user"></i>
       <%= form.text_field :name %>
     </div>
-    <div class="field">
+
+    <div class="field" tabindex="2">
       <%= form.label :active %>
       <%= form.check_box :active %>
     </div>
 
   </div>
-  <div class="modal-footer">
-    <div class="actions">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <%= form.submit 'Update', remote: true, class: 'btn btn-primary' %>
-    </div>
+  <div class="actions">
+    <%= form.submit 'Update', remote: true, class: 'btn btn-primary' %>
   </div>
 <% end %>
