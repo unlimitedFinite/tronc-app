@@ -18,14 +18,11 @@
     </div>
   <% end %>
 
+  <p>Please enter the employees name</p>
   <div class="field" tabindex="1">
     <i class="fa fa-user"></i>
-    <%= form.text_field :name, placeholder: 'Employees Name..' %>
+    <%= form.text_field :name, placeholder: 'Employees Name..', required: true %>
   </div>
-
-  <p>
-    Is employee currently receiving tips?
-  </p>
 
   <div class="slideTwo">
     <%= form.check_box :active, id: 'slideTwo' %>
