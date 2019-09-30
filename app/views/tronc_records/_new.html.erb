@@ -18,13 +18,6 @@
       </div>
     <% end %>
 
-    <% if @reports.length == 0 %>
-      <div class="field">
-        <p>The date you choose should be the last day of the first week you would like to start the application. For example.. If you count all the tips collected between Sunday and Saturday and want to start the application from the latest week, then your week end is <%= @last_saturday.strftime("%a #{@last_saturday.day.ordinalize} %b %y") %>. After this the dates will be automated!</p>
-        <%= form.label :week_end %>
-        <%= form.select(:week_end, options_for_select(@months_array, @last_saturday), {}, { :class => 'select_week' }) %>
-      </div>
-    <% end %>
     <p>Please check the staff list and the date before submitting new record.
       <br>
       <span class="list">
@@ -33,7 +26,7 @@
         <% end %>
       </span>
       <br>
-      <%= link_to "Change Employees", employees_path, class: ''  %>
+      <%= link_to "Update Employees", employees_path, class: ''  %>
     </p>
     <div class="field" tabindex="-1">
       <i class="fa fa-calendar-alt"></i>
@@ -41,7 +34,7 @@
     </div>
     <div class="field" tabindex="1">
       <i class="fa fa-pound-sign"></i>
-      <%= form.number_field :gross_tips, placeholder: 'Gross Tips' %>
+      <%= form.number_field :gross_tips, placeholder: 'Gross Tips', required: true %>
     </div>
     <div class="actions">
       <%= form.submit 'Submit', class: 'btn btn-primary' %>
