@@ -54,7 +54,14 @@ class TroncRecordsController < ApplicationController
   end
 
   def edit
-    @employee_records = @tronc_record.employee_records
+    @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
+
+    @employees = []
+    @employee_records.each do |er|
+      @employees << er.employee
+    end
+
+
     @this_week_end = @tronc_record.week_end
     @this_week_start = @this_week_end - 6
     @this_week_start = @this_week_start.strftime("#{@this_week_start.day.ordinalize} %b")

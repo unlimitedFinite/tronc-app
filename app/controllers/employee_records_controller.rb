@@ -52,11 +52,13 @@ class EmployeeRecordsController < ApplicationController
 
   def destroy
     @tronc_record = @employee_record.tronc_record
-    @employee_records = @tronc_record.employee_records
-    @employee_record.destroy
-    respond_to do |format|
-      format.html
-      format.js
+    @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
+    if @employee_record.destroy
+      EmployeeRecord.rebalance_tips(@tronc_record, @employee_records)
+      respond_to do |format|
+        format.html { redirect_to edit_tronc_record_path(@tronc_record)}
+        format.js
+      end
     end
   end
 
