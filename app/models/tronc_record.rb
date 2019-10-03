@@ -4,9 +4,14 @@ class TroncRecord < ApplicationRecord
   belongs_to :user
 
   after_create :make_employee_records
+  before_destroy :amend_report
 
   monetize :gross_tips, as: 'gross'
   monetize :tax_due, as: 'tax'
+
+  def amend_report
+    Report.tally_down(self)
+  end
 
   def make_employee_records
     # Define list of active employees

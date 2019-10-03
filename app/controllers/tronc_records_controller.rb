@@ -30,6 +30,13 @@ class TroncRecordsController < ApplicationController
   end
 
   def edit
+    @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
+    @employees = @employee_records.group_by(&:employee)
+
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
   def create
@@ -67,20 +74,29 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  # DELETE /tronc_records/1
-  # DELETE /tronc_records/1.json
   def destroy
-    Report.tally_down(@tronc_record)
-    @tronc_record.destroy
-    respond_to do |format|
-      format.html { redirect_to tronc_records_url, notice: 'Tronc record was successfully destroyed.' }
-      format.json { head :no_content }
+    # create new empty tronc record
+    @new_record = TroncRecord.new(
+      week_end: @tronc_record.week_end,
+      report: @tronc_record.report,
+      user: @tronc_record.user,
+      gross_tips: 0,
+      tax_due: 0
+    )
+    if @tronc_record.destroy
+      @new_record.report.completed = false
+      @new_record.save
+      respond_to do |format|
+        format.html { redirect_to report_path(@tronc_record.report), notice: 'Tronc record was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tronc_record
+      # byebug
       @tronc_record = TroncRecord.find(params[:id])
     end
 

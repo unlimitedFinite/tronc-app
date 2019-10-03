@@ -2,7 +2,7 @@
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-  <h2>New Tronc Record</h2>
+  <h2>Edit Tronc Record</h2>
 </div>
 <%= form_for(@tronc_record, local: true) do |form| %>
   <div class="form-content">
@@ -18,11 +18,11 @@
       </div>
     <% end %>
 
-    <p>Please check the staff list and the date before submitting new record.
+    <p>These are the employee records:
       <br>
       <span class="list">
-        <% @employees.each do |e| %>
-          <strong><%= e.name %>, </strong>
+        <% @employee_records.each do |e| %>
+          <strong><%= e.employee.name %>, </strong>
         <% end %>
       </span>
       <br>

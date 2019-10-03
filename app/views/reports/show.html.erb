@@ -37,6 +37,14 @@
         <td>£<%= tr.gross_tips %></td>
         <td>£<%= tr.tax_due %></td>
         <td>£<%= tr.gross_tips - tr.tax_due %></td>
+        <td class="active">
+          <%= link_to edit_tronc_record_path(tr), { :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window' } do  %>
+          <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to tronc_record_path(tr), { :remote => true, method: 'delete', :data => {:confirm => 'Are you sure?'} } do %>
+          <i class="fa fa-trash"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     <% end %>
