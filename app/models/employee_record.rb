@@ -5,7 +5,8 @@ class EmployeeRecord < ApplicationRecord
 
   monetize :tips, as: 'net'
 
-  def self.rebalance_tips(tronc_record, records)
+  def self.rebalance_tips(tronc_record)
+    records = EmployeeRecord.where(tronc_record: tronc_record)
     # Define money to be split (self.tips - self.tax_due)
     share = (tronc_record.gross_tips - tronc_record.tax_due) / records.length
     # update records
