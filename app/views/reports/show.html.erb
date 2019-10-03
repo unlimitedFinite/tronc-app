@@ -31,18 +31,15 @@
       <th>Tax Due</th>
       <th>Net Tips</th>
     </tr>
-    <% @report.tronc_records.each do |tr| %>
+    <% @tronc_records.each do |tr| %>
       <tr>
         <td><%= tr.week_end.strftime("%a #{tr.week_end.day.ordinalize} %b") %></td>
         <td>£<%= tr.gross_tips %></td>
         <td>£<%= tr.tax_due %></td>
         <td>£<%= tr.gross_tips - tr.tax_due %></td>
         <td class="active">
-          <%= link_to edit_tronc_record_path(tr), { :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window' } do  %>
+          <%= link_to edit_tronc_record_path(tr) do  %>
           <i class="fa fa-edit"></i>
-          <% end %>
-          <%= link_to tronc_record_path(tr), { :remote => true, method: 'delete', :data => {:confirm => 'Are you sure?'} } do %>
-          <i class="fa fa-trash"></i>
           <% end %>
         </td>
       </tr>

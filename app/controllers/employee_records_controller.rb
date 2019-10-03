@@ -50,13 +50,13 @@ class EmployeeRecordsController < ApplicationController
     end
   end
 
-  # DELETE /employee_records/1
-  # DELETE /employee_records/1.json
   def destroy
+    @tronc_record = @employee_record.tronc_record
+    @employee_records = @tronc_record.employee_records
     @employee_record.destroy
     respond_to do |format|
-      format.html { redirect_to employee_records_url, notice: 'Employee record was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html
+      format.js
     end
   end
 

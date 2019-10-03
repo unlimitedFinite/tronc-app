@@ -1,8 +1,4 @@
-$("#modal-window").find(".modal-content").html("<%= j (render 'edit') %>");
-$("#modal-window").modal();
-$(document).on('shown.bs.modal', function(e) {
-  $('input:visible:enabled:first', e.target).focus();
-});
+
 
 function focusFields(){
   const fields = document.querySelectorAll('.field');
@@ -18,6 +14,12 @@ function focusFields(){
   });
 }
 
+function selectNumber(){
+  i = $('.field.focused input')[0];
+  i.type = 'text'
+  i.selectionStart = i.value.length;
+  i.type = 'number'
+}
+
 focusFields();
-
-
+selectNumber();

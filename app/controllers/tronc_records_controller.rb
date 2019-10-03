@@ -29,15 +29,6 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  def edit
-    @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
-    @employees = @employee_records.group_by(&:employee)
-
-    respond_to do |f|
-      f.html
-      f.js
-    end
-  end
 
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
@@ -62,7 +53,27 @@ class TroncRecordsController < ApplicationController
     end
   end
 
+  def edit
+    @employee_records = @tronc_record.employee_records
+    @this_week_end = @tronc_record.week_end
+    @this_week_start = @this_week_end - 6
+    @this_week_start = @this_week_start.strftime("#{@this_week_start.day.ordinalize} %b")
+    @this_week_end = @this_week_end.strftime("#{@this_week_end.day.ordinalize} %b")
+  end
+
+  def load_employees
+    @employee_records = @tronc_record.employee_records
+  end
+
   def update
+    # destroy old employee records
+    EmployeeRecord.where(tronc_record: @tronc_record)
+    # create new employee records
+
+    # update tronc record
+    # update report
+
+
     respond_to do |format|
       if @tronc_record.update(tronc_record_params)
         format.html { redirect_to @tronc_record, notice: 'Tronc record was successfully updated.' }
@@ -74,23 +85,8 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  def destroy
-    # create new empty tronc record
-    @new_record = TroncRecord.new(
-      week_end: @tronc_record.week_end,
-      report: @tronc_record.report,
-      user: @tronc_record.user,
-      gross_tips: 0,
-      tax_due: 0
-    )
-    if @tronc_record.destroy
-      @new_record.report.completed = false
-      @new_record.save
-      respond_to do |format|
-        format.html { redirect_to report_path(@tronc_record.report), notice: 'Tronc record was successfully destroyed.' }
-        format.json { head :no_content }
-      end
-    end
+  def new_employees
+
   end
 
   private

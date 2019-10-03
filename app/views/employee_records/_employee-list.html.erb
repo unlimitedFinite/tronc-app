@@ -1,0 +1,11 @@
+  <% if @employee_records.length > 0 %>
+  <% @employee_records.each do |er| %>
+  <li class="employee-card">
+    <%= er.employee.name %>
+    <%= link_to "Delete", employee_record_path(er), remote: true, method: 'delete' %>
+  </li>
+  <% end %>
+  <% else %>
+  <p>You deleted everyone!</p>
+  <% end %>
+

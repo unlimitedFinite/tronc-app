@@ -17,11 +17,14 @@ $(window).bind("load", function(){
     });
   };
 
+  // function generate(){
+  //   $("#employee-list").html("<%= j (render 'employee-list') %>");
+  //   console.log('rendered employee-list from edit.js');
+  // };
+
   setTimeout(() => {
   $('.alert').fadeOut();
   }, 6000);
-
-  // focusFields();
 
 });
 
