@@ -4,13 +4,15 @@ class EmployeeRecordsController < ApplicationController
 
 
   def new
-
+    @tronc = TroncRecord.find(params[:tronc])
     @all_employees = Employee.where(user: current_user)
+    @employees_in_tronc = Employee.with_records_in(@tronc)
+    @employees_not_in_tronc = @all_employees - @employees_in_tronc
     @employees = []
-    @all_employees.each do |employee|
-      @employees << [employee.name, employee.id]
+    @employees_not_in_tronc.each do |k|
+      @employees << [k[:name], k[:id]]
     end
-    @tronc = params[:tronc]
+
     @employee_record = EmployeeRecord.new
     respond_to do |f|
       f.html
@@ -20,7 +22,7 @@ class EmployeeRecordsController < ApplicationController
 
   def create
     @employee_record = EmployeeRecord.new(employee_record_params)
-    @tronc_record = TroncRecord.find(params[:tronc_record])
+    @tronc_record = TroncRecord.find(params['tronc_record'])
     @employee_record.tronc_record = @tronc_record
     @employee_record.week_end = @tronc_record.week_end
     @employee_record.report = @tronc_record.report

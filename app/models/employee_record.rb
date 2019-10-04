@@ -15,4 +15,5 @@ class EmployeeRecord < ApplicationRecord
       r.save
     end
   end
+
 end

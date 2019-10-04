@@ -8,6 +8,8 @@ gem 'wkhtmltopdf-binary'
 gem 'devise'
 gem 'mail_interceptor', group: [:development]
 gem 'money-rails', '~>1.12'
+gem 'simple_form'
+
 # gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
