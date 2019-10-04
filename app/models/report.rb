@@ -25,10 +25,18 @@ class Report < ApplicationRecord
     report.save
   end
 
-  def self.update_report_value(record, old_value)
+  def self.update_report_value(record, old_gross)
     report = record.report
-    report.gross_tips -= old_value
+    new_net = record.gross_tips - record.tax_due
+    old_tax = old_gross / 5
+    old_net = old_gross - old_tax
+    report.gross_tips -= old_gross
     report.gross_tips += record.gross_tips
+    report.tax_due -= old_tax
+    report.tax_due += record.tax_due
+    report.net_tips -= old_net
+    report.net_tips += new_net
+    byebug
     report.save
   end
 
