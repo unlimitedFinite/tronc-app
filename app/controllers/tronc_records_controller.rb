@@ -81,7 +81,7 @@ class TroncRecordsController < ApplicationController
       if @tronc_record.save
         EmployeeRecord.rebalance_tips(@tronc_record)
         Report.update_report_value(@tronc_record, old_value)
-        format.html { redirect_to reports_path(report), notice: 'Tronc record was successfully updated.' }
+        format.html { redirect_to report_path(report), notice: 'Tronc record was successfully updated.' }
         format.json { render :show, status: :ok, location: @tronc_record }
       else
         format.html { render :edit }
