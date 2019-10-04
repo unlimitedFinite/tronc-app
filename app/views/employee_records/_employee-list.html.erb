@@ -1,12 +1,24 @@
+<div class="devise-form">
+  <div class="form-header">
+    <h2>Employees</h2>
+  </div>
+
   <% if @employee_records.length > 0 %>
   <% @employee_records.each do |er| %>
   <li class="employee-card">
-    <%= er.employee.name %> :
-    <%= er.tips %>
-    <%= link_to "Remove", employee_record_path(er), remote: true, method: 'delete' %>
+    <%= er.employee.name %>
+    <%= link_to employee_record_path(er), remote: true, method: 'delete' do %>
+    <i class="fa fa-trash"></i>
+    <% end %>
   </li>
   <% end %>
   <% else %>
-  <p>You deleted everyone!</p>
+  <p>Oops! You deleted everyone! Please add them again..</p>
   <% end %>
 
+
+  <%= link_to "Add Employee?", new_employee_record_path(tronc: @tronc_record), { :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-sm btn-primary' }  %>
+
+
+  </div>
+</div>

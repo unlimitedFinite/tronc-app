@@ -73,16 +73,11 @@ class TroncRecordsController < ApplicationController
   end
 
   def update
-    # destroy old employee records
-    EmployeeRecord.where(tronc_record: @tronc_record)
-    # create new employee records
-
-    # update tronc record
-    # update report
-
-
+    old_value = TroncRecord.find(params[:id]).gross_tips
     respond_to do |format|
       if @tronc_record.update(tronc_record_params)
+        EmployeeRecord.rebalance_tips(@tronc_record)
+        Report.update_report_value(@tronc_record, old_value)
         format.html { redirect_to @tronc_record, notice: 'Tronc record was successfully updated.' }
         format.json { render :show, status: :ok, location: @tronc_record }
       else

@@ -25,6 +25,13 @@ class Report < ApplicationRecord
     report.save
   end
 
+  def self.update_report_value(record, old_value)
+    report = record.report
+    report.gross_tips -= old_value
+    report.gross_tips += record.gross_tips
+    report.save
+  end
+
   def self.mark_complete(report)
     report.completed = true
     report.save

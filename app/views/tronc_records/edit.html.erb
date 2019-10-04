@@ -21,24 +21,23 @@
             </div>
           <% end %>
 
-          <p>These were the employees for this week:
-            <%#= render 'employee_records/employee-list' %>
+          <p>Warning! Any changes made here will immediately make changes to your report!
             <ul id="employee-list">
               <%= render "employee_records/employee-list" %>
             </ul>
-            <%= link_to "Add Employee?", new_employee_record_path(tronc: @tronc_record), { :remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn' }  %>
           </p>
 
           <div class="field" tabindex="-1">
             <i class="fa fa-calendar-alt"></i>
             <input type="text" value="<%= @this_week_start %> - <%= @this_week_end %>" disabled>
           </div>
+
           <div class="field" tabindex="1">
             <i class="fa fa-pound-sign"></i>
             <%= form.number_field :gross_tips, placeholder: 'Gross Tips', required: true %>
           </div>
           <div class="actions">
-            <%= form.submit 'Submit', class: 'btn btn-primary' %>
+            <%= form.submit 'Submit', class: 'btn btn-primary form-btn' %>
           </div>
         </div>
       <% end %>
