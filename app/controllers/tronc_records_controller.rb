@@ -1,4 +1,6 @@
 class TroncRecordsController < ApplicationController
+  include Calculations
+
   before_action :set_tronc_record, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -76,10 +78,10 @@ class TroncRecordsController < ApplicationController
     old_value = TroncRecord.find(params[:id]).gross_tips
     report = Report.find(@tronc_record.report_id)
     @tronc_record.gross_tips = tronc_record_params[:gross_tips]
-    @tronc_record.tax_due = @tronc_record.gross_tips / 5
+    # @tronc_record.tax_due = @tronc_record.gross_tips / 5
     respond_to do |format|
       if @tronc_record.save
-        EmployeeRecord.rebalance_tips(@tronc_record)
+        EmployeeRecord.rebalance_tips(@tronc_record.id)
         Report.update_report_value(@tronc_record, old_value)
         format.html { redirect_to report_path(report), notice: 'Tronc record was successfully updated.' }
         format.json { render :show, status: :ok, location: @tronc_record }
