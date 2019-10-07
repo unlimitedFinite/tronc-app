@@ -1,0 +1,5 @@
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/portofin/public_html/tronc-app  # Add /<app_folder> if required
+        - /bin/cp -a * $DEPLOYPATH
