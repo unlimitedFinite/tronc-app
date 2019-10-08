@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: tronc_app_production
-  username: tronc_app
+  database: portofin_tronc
+  username: tronc_admin
   password: <%= ENV['TRONC_APP_DATABASE_PASSWORD'] %>
