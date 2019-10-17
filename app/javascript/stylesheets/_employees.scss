@@ -1,3 +1,5 @@
+// Employees Edit and New Pages //
+
 .employees-parent {
   @extend .reports-parent;
   .employees-container {
@@ -7,7 +9,6 @@
     }
   }
 }
-
 
 .fa-edit {
   transition: 0.3s 0s ease-in;
@@ -106,3 +107,50 @@ table {
   background: #27ae60;
   /*activeColor*/
 }
+
+
+// Employee Add To Previous Tronc Record Page //
+
+#employee-list {
+  list-style: none;
+  padding: 0;
+  .devise-form {
+    background: #ffffff47;
+    width: 200px;
+    h2 {
+      padding: 6px 0;
+    }
+  }
+  .btn-primary {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #34612aa8;
+  }
+  .btn-primary:hover {
+    background-color: #479ba18a;
+  }
+}
+
+li.employee-card {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  position: relative;
+  margin: 4px auto;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: white;
+  text-transform: uppercase;
+  .fa-trash {
+    font-size: 1.1rem;
+  }
+}
+
+.form-btn {
+    margin: 8px 0;
+    width: 250px;
+}
+
+

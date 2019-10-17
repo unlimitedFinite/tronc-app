@@ -1,6 +1,49 @@
-<h1>Editing Tronc Record</h1>
+<div class="form-grand-parent">
+  <div class="form-parent">
+    <div class="devise-form">
+      <div class="form-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2>Edit Tronc Record</h2>
+      </div>
+      <%= form_for(@tronc_record, local: true) do |form| %>
+        <div class="form-content">
 
-<%= render 'form', tronc_record: @tronc_record %>
+          <% if @tronc_record.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@tronc_record.errors.count, "error") %> prohibited this @tronc_record from being saved:</h2>
+              <ul>
+                <% @tronc_record.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-<%= link_to 'Show', @tronc_record %> |
-<%= link_to 'Back', tronc_records_path %>
+          <p>Warning! Any changes made here will immediately make changes to your report!
+            <ul id="employee-list">
+              <%= render "employee_records/employee-list" %>
+            </ul>
+          </p>
+
+          <div class="field" tabindex="-1">
+            <i class="fa fa-calendar-alt"></i>
+            <input type="text" value="<%= @this_week_start %> - <%= @this_week_end %>" disabled>
+          </div>
+
+          <div class="field" tabindex="1">
+            <i class="fa fa-pound-sign"></i>
+            <%= form.number_field :gross_tips, placeholder: 'Gross Tips', required: true %>
+          </div>
+          <div class="actions">
+            <%= form.submit 'Submit', class: 'btn btn-primary form-btn' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+
+</script>

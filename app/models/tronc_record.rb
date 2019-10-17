@@ -1,28 +1,52 @@
 class TroncRecord < ApplicationRecord
   has_many :employee_records, dependent: :destroy
+  has_many :employees, through: :employee_records
+
   belongs_to :report
   belongs_to :user
 
   after_create :make_employee_records
+  after_update :tally
 
   monetize :gross_tips, as: 'gross'
   monetize :tax_due, as: 'tax'
 
+  def tally
+
+  end
+
+  def new_empty_record
+    Report.tally_down(self)
+    new_record = TroncRecord.new(
+      week_end: week_end,
+      report: report,
+      user: user,
+      gross_tips: 0,
+      tax_due: 0
+    )
+    new_record.report.completed = false
+    new_record.save
+  end
+
   def make_employee_records
     # Define list of active employees
-    employees = Employee.where(active: true, user: self.user)
+    employees = Employee.where(active: true, user: user)
     # Define money to be split (self.tips - self.tax_due)
-    share = (self.gross_tips - self.tax_due) / employees.length
+    share = (gross_tips - tax_due) / employees.length
     # create records
     employees.each do |e|
       EmployeeRecord.create(
         employee: e,
-        week_end: self.week_end,
+        week_end: week_end,
         tips: share,
         tronc_record: self,
-        report_id: self.report.id
+        report_id: report.id
       )
     end
+  end
+
+  def self.update_employee_records
+
   end
 
   def self.add_to_report(record)
@@ -73,4 +97,3 @@ class TroncRecord < ApplicationRecord
   end
 end
 
-# if next week

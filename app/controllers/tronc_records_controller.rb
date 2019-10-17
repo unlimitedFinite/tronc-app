@@ -29,8 +29,6 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  def edit
-  end
 
   def create
     @tronc_record = TroncRecord.new(tronc_record_params)
@@ -55,10 +53,35 @@ class TroncRecordsController < ApplicationController
     end
   end
 
+  def edit
+    @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
+
+    @employees = []
+    @employee_records.each do |er|
+      @employees << er.employee
+    end
+
+
+    @this_week_end = @tronc_record.week_end
+    @this_week_start = @this_week_end - 6
+    @this_week_start = @this_week_start.strftime("#{@this_week_start.day.ordinalize} %b")
+    @this_week_end = @this_week_end.strftime("#{@this_week_end.day.ordinalize} %b")
+  end
+
+  def load_employees
+    @employee_records = @tronc_record.employee_records
+  end
+
   def update
+    old_value = TroncRecord.find(params[:id]).gross_tips
+    report = Report.find(@tronc_record.report_id)
+    @tronc_record.gross_tips = tronc_record_params[:gross_tips]
+    @tronc_record.tax_due = @tronc_record.gross_tips / 5
     respond_to do |format|
-      if @tronc_record.update(tronc_record_params)
-        format.html { redirect_to @tronc_record, notice: 'Tronc record was successfully updated.' }
+      if @tronc_record.save
+        EmployeeRecord.rebalance_tips(@tronc_record)
+        Report.update_report_value(@tronc_record, old_value)
+        format.html { redirect_to reports_path(report), notice: 'Tronc record was successfully updated.' }
         format.json { render :show, status: :ok, location: @tronc_record }
       else
         format.html { render :edit }
@@ -67,20 +90,10 @@ class TroncRecordsController < ApplicationController
     end
   end
 
-  # DELETE /tronc_records/1
-  # DELETE /tronc_records/1.json
-  def destroy
-    Report.tally_down(@tronc_record)
-    @tronc_record.destroy
-    respond_to do |format|
-      format.html { redirect_to tronc_records_url, notice: 'Tronc record was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tronc_record
+      # byebug
       @tronc_record = TroncRecord.find(params[:id])
     end
 
