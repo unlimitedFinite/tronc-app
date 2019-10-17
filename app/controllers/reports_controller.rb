@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  include Calculations
+
   before_action :set_report, only: [:show, :update, :destroy]
   before_action :authenticate_user!
   # before_action :check_current_user, only: [:show]
@@ -11,7 +13,7 @@ class ReportsController < ApplicationController
   end
 
   def show
-    @tronc_records = TroncRecord.where(report: @report, user: current_user)
+    @tronc_records = TroncRecord.where(report: @report, user: current_user).order(week_end: 'ASC')
     @employee_records = EmployeeRecord.where(report: @report)
     @employees = @employee_records.group_by(&:employee)
     respond_to do |format|
@@ -77,16 +79,6 @@ class ReportsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /reports/1
-  # DELETE /reports/1.json
-  def destroy
-    @report.destroy
-    respond_to do |format|
-      format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

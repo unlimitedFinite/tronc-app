@@ -10,7 +10,7 @@
     <p>Below you can see the tronc records entered for the current period. Once the report is complete, please come back to see the finished report, which will give you the options to send results to your accountant and arrange payment to HMRC</p>
   <% else %>
     <p>
-      This months tronc is complete, please arrange payment to HMRC for <strong>£<%= @report.tax_due %></strong> as soon as possible.
+      This months tronc is complete, please arrange payment to HMRC as soon as possible.
       <div data-controller="clipboard members dashboard">
         <input class="tax-code" type="text" data-target="clipboard.source" value="475PD00935391" readonly>
         <button data-action="clipboard#copy" class="clipboard-button btn btn-secondary">
@@ -31,12 +31,17 @@
       <th>Tax Due</th>
       <th>Net Tips</th>
     </tr>
-    <% @report.tronc_records.each do |tr| %>
+    <% @tronc_records.each do |tr| %>
       <tr>
         <td><%= tr.week_end.strftime("%a #{tr.week_end.day.ordinalize} %b") %></td>
         <td>£<%= tr.gross_tips %></td>
-        <td>£<%= tr.tax_due %></td>
-        <td>£<%= tr.gross_tips - tr.tax_due %></td>
+        <td>£<%= calc_vat(tr.gross_tips) %></th>
+        <td>£<%= calc_net(tr.gross_tips) %></th>
+        <td class="active">
+          <%= link_to edit_tronc_record_path(tr) do  %>
+          <i class="fa fa-edit"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
     <% end %>
@@ -46,8 +51,8 @@
       <tr>
         <th>TOTALS</th>
         <th>£<%= @report.gross_tips %></th>
-        <th>£<%= @report.tax_due %></th>
-        <th>£<%= @report.net_tips %></th>
+        <th>£<%= calc_vat(@report.gross_tips) %></th>
+        <th>£<%= calc_net(@report.gross_tips) %></th>
       </tr>
     <% end %>
   </table>

@@ -1,62 +1,53 @@
 class EmployeeRecordsController < ApplicationController
   before_action :set_employee_record, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  # GET /employee_records
-  # GET /employee_records.json
-  def index
-  end
 
-  # GET /employee_records/1
-  # GET /employee_records/1.json
-  def show
-  end
 
-  # GET /employee_records/new
   def new
+    @tronc = TroncRecord.find(params[:tronc])
+    @all_employees = Employee.where(user: current_user)
+    @employees_in_tronc = Employee.with_records_in(@tronc)
+    @employees_not_in_tronc = @all_employees - @employees_in_tronc
+    @employees = []
+    @employees_not_in_tronc.each do |k|
+      @employees << [k[:name], k[:id]]
+    end
+
     @employee_record = EmployeeRecord.new
+    respond_to do |f|
+      f.html
+      f.js
+    end
   end
 
-  # GET /employee_records/1/edit
-  def edit
-  end
-
-  # POST /employee_records
-  # POST /employee_records.json
   def create
     @employee_record = EmployeeRecord.new(employee_record_params)
-
+    @tronc_record = TroncRecord.find(params['tronc_record'])
+    @employee_record.tronc_record = @tronc_record
+    @employee_record.week_end = @tronc_record.week_end
+    @employee_record.report = @tronc_record.report
+    @employee_record.tips = 0
     respond_to do |format|
       if @employee_record.save
-        format.html { redirect_to @employee_record, success: 'Employee record was successfully created.' }
-        format.json { render :show, status: :created, location: @employee_record }
+        EmployeeRecord.rebalance_tips(@tronc_record)
+        format.html { redirect_to edit_tronc_record_path(@tronc_record), success: 'Tronc Record has been updated' }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @employee_record.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_tronc_record_path(@tronc_record), alert: 'An error occured, try again' }
+        format.js
       end
     end
   end
 
-  # PATCH/PUT /employee_records/1
-  # PATCH/PUT /employee_records/1.json
-  def update
-    respond_to do |format|
-      if @employee_record.update(employee_record_params)
-        format.html { redirect_to @employee_record, notice: 'Employee record was successfully updated.' }
-        format.json { render :show, status: :ok, location: @employee_record }
-      else
-        format.html { render :edit }
-        format.json { render json: @employee_record.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /employee_records/1
-  # DELETE /employee_records/1.json
   def destroy
-    @employee_record.destroy
-    respond_to do |format|
-      format.html { redirect_to employee_records_url, notice: 'Employee record was successfully destroyed.' }
-      format.json { head :no_content }
+    @tronc_record = @employee_record.tronc_record
+    @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
+    if @employee_record.destroy
+      EmployeeRecord.rebalance_tips(@tronc_record.id)
+      respond_to do |format|
+        format.html { redirect_to tronc_record_path(@tronc_record)}
+        format.js
+      end
     end
   end
 
@@ -68,6 +59,6 @@ class EmployeeRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_record_params
-      params.require(:employee_record).permit(:week_end, :tips, :employee_id)
+      params.require(:employee_record).permit(:employee_id, :tronc_record)
     end
 end
