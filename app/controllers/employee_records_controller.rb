@@ -29,7 +29,7 @@ class EmployeeRecordsController < ApplicationController
     @employee_record.tips = 0
     respond_to do |format|
       if @employee_record.save
-        EmployeeRecord.rebalance_tips(@tronc_record)
+        EmployeeRecord.rebalance_tips(@tronc_record.id)
         format.html { redirect_to edit_tronc_record_path(@tronc_record), success: 'Tronc Record has been updated' }
         format.js
       else
