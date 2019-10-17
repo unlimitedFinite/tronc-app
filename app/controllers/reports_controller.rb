@@ -1,4 +1,6 @@
 class ReportsController < ApplicationController
+  include Calculations
+
   before_action :set_report, only: [:show, :update, :destroy]
   before_action :authenticate_user!
   # before_action :check_current_user, only: [:show]

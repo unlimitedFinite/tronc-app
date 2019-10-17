@@ -43,7 +43,7 @@ class EmployeeRecordsController < ApplicationController
     @tronc_record = @employee_record.tronc_record
     @employee_records = EmployeeRecord.where(tronc_record: @tronc_record)
     if @employee_record.destroy
-      EmployeeRecord.rebalance_tips(@tronc_record)
+      EmployeeRecord.rebalance_tips(@tronc_record.id)
       respond_to do |format|
         format.html { redirect_to tronc_record_path(@tronc_record)}
         format.js

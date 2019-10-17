@@ -1,4 +1,6 @@
 class TroncRecord < ApplicationRecord
+  include Calculations
+
   has_many :employee_records, dependent: :destroy
   has_many :employees, through: :employee_records
 
@@ -9,7 +11,6 @@ class TroncRecord < ApplicationRecord
   after_update :tally
 
   monetize :gross_tips, as: 'gross'
-  monetize :tax_due, as: 'tax'
 
   def tally
 
@@ -21,8 +22,7 @@ class TroncRecord < ApplicationRecord
       week_end: week_end,
       report: report,
       user: user,
-      gross_tips: 0,
-      tax_due: 0
+      gross_tips: 0
     )
     new_record.report.completed = false
     new_record.save
@@ -32,7 +32,8 @@ class TroncRecord < ApplicationRecord
     # Define list of active employees
     employees = Employee.where(active: true, user: user)
     # Define money to be split (self.tips - self.tax_due)
-    share = (gross_tips - tax_due) / employees.length
+    vat_net = vat_and_net_for(gross_tips)
+    share = (vat_net[1]) / employees.length
     # create records
     employees.each do |e|
       EmployeeRecord.create(
@@ -43,10 +44,6 @@ class TroncRecord < ApplicationRecord
         report_id: report.id
       )
     end
-  end
-
-  def self.update_employee_records
-
   end
 
   def self.add_to_report(record)
@@ -86,14 +83,14 @@ class TroncRecord < ApplicationRecord
     record.report = Report.find_by(user: record.user)
     record.week_end = record.report.report_start
     record.week_end += 1 until record.week_end.saturday?
-    record.tax_due = record.gross_tips / 5 unless record.gross_tips.nil?
+    # record.tax_due = record.gross_tips / 5 unless record.gross_tips.nil?
   end
 
   def self.save_attributes(record)
     if record.user.reports.length.positive?
       record.week_end = TroncRecord.where(user: record.user).last.week_end + 7
     end
-    record.tax_due = record.gross_tips / 5
+    # record.tax_due = record.gross_tips / 5
   end
 end
 

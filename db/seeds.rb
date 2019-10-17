@@ -49,8 +49,6 @@ p 'seeding initial report...'
 Report.create(
   report_start: Date.new(2019, 9, 6),
   gross_tips: 100,
-  tax_due: 20,
-  net_tips: 80,
   user: User.last
 )
 
@@ -60,7 +58,6 @@ TroncRecord.create(
   week_end: Date.new(2019, 9, 7),
   report: Report.last,
   gross_tips: 100,
-  tax_due: 20,
   user: User.last
 )
 
