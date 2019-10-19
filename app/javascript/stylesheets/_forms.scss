@@ -10,6 +10,8 @@
     vertical-align:middle;
   }
 }
+
+
 .devise-form {
   text-align: center;
   width: 350px;
@@ -18,9 +20,36 @@
   box-shadow: 4px 4px 8px #9bc7ca87;
   border-radius: 8px;
   margin: 0 auto;
+  .reg {
+    display: flex;
+    justify-content: space-between;
+    h2, a {
+      text-align: center;
+      width: 50%;
+      font-size: 1rem;
+      color: #ecececde;
+      padding: 12px 0;
+      font-family: sans-serif;
+      margin: 0;
+      transition: none;
+    }
+    h2.selected {
+      background-color: #61656b;
+      border-top-left-radius: 8px;
+      border-right: 1px solid #00000091;
+      border-left: 1px solid #00000091;
+      border-top-right-radius: 8px;
+    }
+    h2.not-selected {
+      // background: gray;
+      a {
+        color: #ffffff69;
+      }
+    }
+  }
   .form-header {
     border-bottom: 1.5px solid #00000021;
-    background: #6363636b;
+    background: #333840;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
     h2 {
@@ -29,6 +58,9 @@
       padding: 12px 0;
       font-family: sans-serif;
       margin: 0;
+      // background-color: #4d5054;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
     }
     .close {
       position: absolute;
