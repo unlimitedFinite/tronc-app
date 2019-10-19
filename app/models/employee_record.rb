@@ -5,7 +5,7 @@ class EmployeeRecord < ApplicationRecord
   belongs_to :tronc_record
   belongs_to :report
 
-  monetize :tips, as: 'net'
+  monetize :tips, as: 'gross'
 
   def self.rebalance_tips(tronc_id)
     records = EmployeeRecord.where(tronc_record: tronc_id)
@@ -13,8 +13,7 @@ class EmployeeRecord < ApplicationRecord
     # share = (tronc_record.gross_tips - tronc_record.tax_due) / records.length
     # update records
     gross = TroncRecord.find(tronc_id).gross_tips
-    vat = gross / 5
-    share = (gross - vat) / records.length
+    share = gross / records.length
     records.each do |r|
       r.tips = share
       r.save

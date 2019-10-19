@@ -32,8 +32,7 @@ class TroncRecord < ApplicationRecord
     # Define list of active employees
     employees = Employee.where(active: true, user: user)
     # Define money to be split (self.tips - self.tax_due)
-    vat_net = vat_and_net_for(gross_tips)
-    share = (vat_net[1]) / employees.length
+    share = gross_tips / employees.length
     # create records
     employees.each do |e|
       EmployeeRecord.create(
