@@ -1,8 +1,13 @@
 <div class="form-grand-parent">
   <div class="form-parent">
     <div class="devise-form">
-      <div class="form-header">
-        <h2>Register</h2>
+      <div class="form-header reg">
+        <h2 class="selected">Register</h2>
+        <h2 class="not-selected">
+        <%= link_to new_user_session_path do %>
+        Sign In
+        <% end %>
+        </h2>
       </div>
       <div class="form-content">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
