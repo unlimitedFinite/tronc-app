@@ -1,8 +1,11 @@
 <section class="header">
   <h1><%= @report.report_start.strftime("%B %Y") %></h1>
+  <h4 style="text-align: center;"><%= @report.user.email %></h4>
+
 </section>
 <section class="content">
-  <table>
+  <h2>Weekly Records</h2>
+  <table style="border-collapse: collapse;">
     <tr>
       <th>Week Ending</th>
       <th>Gross Tips</th>
@@ -24,37 +27,36 @@
         <th>£<%= calc_net(@report.gross_tips) %></th>
       </tr>
     </table>
-  <br>
-  <h3>Employees Total Net Tips</h3>
-  <ul>
-    <% @employees.each_pair do |e, r| %>
-      <li><strong><%= e.name %></strong> received total of:
-        <% t = 0 %>
-        <% r.each do |r| %>
-          <% t += r.tips %>
-        <% end %>
-        £<%= t %>
-      </li>
-    <% end %>
-  </ul>
 
+  <br>
+  <hr>
+
+  <h2>Employee Records</h2>
   <% @employees.each_pair do |e, r| %>
-  <h5><%= e.name %></h5>
-  <table>
-    <tr>
-      <th>Week End</th>
-      <th>Gross Tips</th>
-      <th>VAT</th>
-      <th>Net Tips</th>
-    </tr>
-    <% r.each do |r| %>
-    <tr>
-      <td><%= r.week_end.strftime("%a #{r.week_end.day.ordinalize} %b") %></td>
-      <td>£<%= r.tips * 1.2 %></td>
-      <td>£<%= (r.tips * 1.2) - r.tips %></td>
-      <td>£<%= r.tips %></td>
-    </tr>
+  <% t = 0 %>
+  <div style="page-break-inside: avoid;">
+    <table style="border-collapse: collapse;">
+      <h3 class="text-left"><%= e.name %></h3>
+      <tr>
+        <th>Week End</th>
+        <th>Gross Tips</th>
+        <th>Tax DUe</th>
+        <th>Net Tips</th>
+      </tr>
+      <% r.each do |r| %>
+      <% t += r.tips %>
+      <tr>
+        <td><%= r.week_end.strftime("%a #{r.week_end.day.ordinalize} %b") %></td>
+        <td>£<%= r.tips %></td>
+        <td>£<%= calc_vat(r.tips) %></td>
+        <td>£<%= calc_net(r.tips) %></td>
+      </tr>
+      <% end %>
+      <th>Totals</th>
+      <th>£<%= t %></th>
+      <th>£<%= calc_vat(t) %></th>
+      <th>£<%= calc_net(t) %></th>
+    </table>
+  </div>
     <% end %>
-  </table>
-  <% end %>
 </section>

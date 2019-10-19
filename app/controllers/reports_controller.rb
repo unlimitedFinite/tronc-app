@@ -25,8 +25,8 @@ class ReportsController < ApplicationController
         layout: 'pdf.html',
         zoom: 1,
         lowquality: true,
-        dpi: 75
-         # Excluding ".pdf" extension.
+        dpi: 75,
+        header: { right: 'Page: [page] of [topage]'}
       end
     end
   end
