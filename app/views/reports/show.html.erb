@@ -70,7 +70,8 @@
         <% r.each do |r| %>
           <% t += r.tips %>
         <% end %>
-        £<%= t %>
+        £<%= t %> gross<br>
+        £<%= calc_net(t) %> net
       </li>
     <% end %>
   </ul>
