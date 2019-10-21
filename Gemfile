@@ -6,6 +6,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-heroku', '2.12.5.0'
 gem 'wkhtmltopdf-binary'
 gem 'devise'
+gem 'mail_interceptor', group: [:development]
 gem 'money-rails', '~>1.12'
 gem 'simple_form'
 gem 'figaro'
