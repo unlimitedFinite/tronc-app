@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'reports/setup', to: 'reports#setup', as: :setup_path
   get 'reports/print_pdf', to: 'reports#print_pdf'
   get 'tronc_records/employees', to: 'tronc_records#new_employees', as: :new_employees_records
+  get 'users/confirm', to: 'users#confirm', as: :confirm_path
   resources :reports, except: [:edit]
   resources :tronc_records
   resources :employee_records
