@@ -59,6 +59,18 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "tronc_app_production"
+  config.action_mailer.default_url_options = { host: 'https://troncsystem.com' }
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = {
+    address: 'smtp.sendgrid.net',
+    port: '25',
+    domain: 'heroku.com',
+    user_name: ENV['SENDGRID_USERNAME'],
+    password: ENV['SENDGRID_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   config.action_mailer.perform_caching = false
 
