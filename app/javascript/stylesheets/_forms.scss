@@ -11,6 +11,21 @@
   }
 }
 
+#error_explanation {
+  color: #ffffffc2;
+  margin: 0 auto;
+  width: 85%;
+  ul {
+    li {
+      color: white;
+      font-size: 0.8rem;
+      i.fa-times {
+        color: red;
+        padding-right: 8px;
+      }
+    }
+  }
+}
 
 .devise-form {
   text-align: center;
