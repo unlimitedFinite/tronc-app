@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 def confirm
-  byebug
+  # byebug
 end
 
 
