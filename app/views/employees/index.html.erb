@@ -41,7 +41,9 @@
       <% end %>
       <%= link_to "New Employee", new_employee_path, {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'} %>
       <% if current_user.reports.length == 0 && @employees.length > 0 %>
-        <%= link_to "Back To Setup", :setup_path, class: "btn btn-primary btn-lg" %>
+        <%= link_to "Report Setup", :setup_path, class: "btn btn-primary btn-lg" %>
+      <% elsif current_user.reports.length != 0 %>
+        <%= link_to 'Current Report', report_path(Report.last), class: 'btn btn-lg btn-primary' %>
       <% end %>
     </section>
   </div>
