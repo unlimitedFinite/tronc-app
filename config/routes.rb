@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users, :skip => [ :registrations ]
+  devise_for :users, :skip => [ :registrations, :passwords ]
   devise_scope :user do
     get 'users/sign_up', to: 'users/registrations#new', as: :new_user_registration
     post 'users/sign_up', to: 'users/registrations#create', as: :user_registration
+    get 'users/password', to: 'users/passwords#new', as: :new_user_password
+    post 'users/password', to: 'users/passwords#create', as: :user_password
+    get 'users/password/edit', to: 'users/passwords#edit', as: :edit_user_password
+    put 'users/password', to: 'users/passwords#update'
   end
   get 'reports/setup', to: 'reports#setup', as: :setup_path
   get 'reports/print_pdf', to: 'reports#print_pdf'
