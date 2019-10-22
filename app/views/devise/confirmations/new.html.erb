@@ -1,9 +1,15 @@
 <div class="form-grand-parent">
   <div class="form-parent">
     <div class="devise-form">
-      <div class="form-header">
-        <h2>Resend Confirmation</h2>
+      <div class="form-header reg">
+        <h2 class="not-selected">
+        <%= link_to new_user_session_path do %>
+        Sign In
+        <% end %>
+        </h2>
+        <h2 class="selected">Resend Confirmation</h2>
       </div>
+
       <div class="form-content">
 
         <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
@@ -21,7 +27,7 @@
           </div>
         <% end %>
 
-        <%= render "devise/shared/links" %>
+        <%#= render "devise/shared/links" %>
       </div>
     </div>
   </div>

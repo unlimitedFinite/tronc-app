@@ -31,6 +31,7 @@
 
           <div class="actions">
             <%= f.submit "Register", class: 'btn btn-primary' %>
+            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
           </div>
         <% end %>
       </div>

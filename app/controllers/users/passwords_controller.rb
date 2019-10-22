@@ -8,6 +8,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   # def create
+  #   # flash[:notice] = "WWWWWWWWWWWWWWWe have sent an email with the instructions to reset your password"
   #   super
   # end
 
@@ -29,6 +30,6 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
   # def after_sending_reset_password_instructions_path_for(resource_name)
-  #   super(resource_name)
+  #   confirm_path(resource_name)
   # end
 end
