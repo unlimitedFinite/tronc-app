@@ -30,7 +30,7 @@ a:hover {
 }
 
 .notice {
-  position: absolute;
+  position: fixed;
   color: #0735088c;
   bottom: 12px;
   right: 12px;
@@ -41,9 +41,13 @@ a:hover {
 }
 
 .alert {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   right: 16px
+}
+
+.alert:empty {
+  display: none;
 }
 
 

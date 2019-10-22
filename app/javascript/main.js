@@ -22,9 +22,9 @@ $(window).bind("load", function(){
   //   console.log('rendered employee-list from edit.js');
   // };
 
-  setTimeout(() => {
-  $('.alert').fadeOut();
-  }, 6000);
+  // setTimeout(() => {
+  // $('.alert').fadeOut();
+  // }, 6000);
 
 });
 

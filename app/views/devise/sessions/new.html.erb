@@ -11,6 +11,9 @@
       </div>
       <div class="form-content">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <%= render "devise/shared/error_messages", resource: resource %>
+
           <div class="field" tabindex="1">
             <i class="fa fa-user"></i>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email' %>
@@ -24,7 +27,8 @@
 
           <div class="actions">
             <%= f.submit "Sign In", class: 'btn btn-primary' %>
-            <%#= link_to 'Forgot your password?', new_user_password_path(resource) %>
+            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+            <%= link_to 'Forgot your password?', new_user_password_path(resource) %>
           </div>
         <% end %>
         <%#= render "devise/shared/links" %>
