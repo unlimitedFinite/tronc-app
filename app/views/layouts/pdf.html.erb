@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= stylesheet_pack_tag 'application' %>
   <meta charset="utf-8">
   <title>Tronc Report for <%= @report.report_start.strftime("%B %Y") %></title>
       <%= wicked_pdf_stylesheet_link_tag "reports" %>
