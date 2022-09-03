@@ -232,6 +232,7 @@ GEM
 
 PLATFORMS
   -darwin-21
+  arm64-darwin-21
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
@@ -261,7 +262,7 @@ DEPENDENCIES
   wkhtmltopdf-heroku (= 2.12.5.0)
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.7.6p219
 
 BUNDLED WITH
    2.3.21
