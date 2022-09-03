@@ -15,10 +15,12 @@ const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
+require("jquery")
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+
 require('main')
 
 // Uncomment to copy all static images under ../images to the output folder and reference
