@@ -1,7 +1,7 @@
 databases:
-  - name: tronc-system
-    databaseName: tronc-system
-    user: unlimitedFinite
+  - name: troncSystem
+    databaseName: troncSystem
+    user: deltodesco
 
 services:
   - type: web
