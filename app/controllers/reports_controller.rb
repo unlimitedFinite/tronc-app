@@ -19,10 +19,11 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Tronc Report",
-        template: 'reports/show_pdf.html.erb',
+        render pdf: "show_pdf.html.erb",
+        template: 'reports/show_pdf',
+        formats: [:html],
         page_size: 'A4',
-        layout: 'pdf.html',
+        layout: 'layouts/pdf',
         zoom: 1,
         lowquality: true,
         dpi: 75,
